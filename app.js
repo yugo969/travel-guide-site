@@ -432,6 +432,18 @@ const fashionAreas = [
     title: "中部淮海路",
     text: "まず1本目に歩くならここです。中国の若い層向けの話題店と大手旗艦店をまとめて見られます。街の雰囲気も一番『上海ファッション』っぽいです。",
     tags: ["Masonprince", "Adidas", "Uniqlo", "旗艦店集中"],
+    places: [
+      {
+        name: "Middle Huaihai Road",
+        address: "Middle Huaihai Road, Huangpu District, Shanghai",
+        map: "https://www.google.com/maps/search/?api=1&query=Middle+Huaihai+Road+Huangpu+Shanghai",
+      },
+      {
+        name: "Masonprince 旗艦店周辺",
+        address: "Middle Huaihai Road, Huangpu District",
+        map: "https://www.google.com/maps/search/?api=1&query=Masonprince+Middle+Huaihai+Road+Shanghai",
+      },
+    ],
     links: [
       {
         title: "Middle Huaihai Road",
@@ -444,6 +456,23 @@ const fashionAreas = [
     title: "巨鹿路・富民路・長楽路",
     text: "独立系デザイナーや小さい店を回るならこの三本です。量販寄りではなく、店ごとの世界観やセレクトを見るエリアです。中国っぽい今の感覚を拾いたいならかなり強いです。",
     tags: ["Labelhood", "Xifang", "Julu", "Fumin"],
+    places: [
+      {
+        name: "Labelhood",
+        address: "No 184 Fumin Road, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=184+Fumin+Road+Shanghai+Labelhood",
+      },
+      {
+        name: "Xifang",
+        address: "No 720 Changle Road, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=720+Changle+Road+Shanghai+Xifang",
+      },
+      {
+        name: "Labelhood House",
+        address: "No 796 Julu Road, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=796+Julu+Road+Shanghai+Labelhood+House",
+      },
+    ],
     links: [
       {
         title: "Jing'an city walk",
@@ -456,6 +485,18 @@ const fashionAreas = [
     title: "延慶路・東湖路・Yan Qing Li",
     text: "服だけでなく、ライフスタイル寄りの若い店を見たいならここです。街路樹のある低層エリアで、ぶらつきながら小さな店を拾うのに向いています。",
     tags: ["Goodbai", "小規模店", "ライフスタイル", "徐匯"],
+    places: [
+      {
+        name: "Yan Qing Li",
+        address: "No 110 Yanqing Road, Xuhui District",
+        map: "https://www.google.com/maps/search/?api=1&query=110+Yanqing+Road+Shanghai",
+      },
+      {
+        name: "Goodbai Yanqing Road",
+        address: "Yanqing Road area, Xuhui District",
+        map: "https://www.google.com/maps/search/?api=1&query=Goodbai+Yanqing+Road+Shanghai",
+      },
+    ],
     links: [
       {
         title: "Yan Qing Li shopping area",
@@ -468,6 +509,23 @@ const fashionAreas = [
     title: "永源路 / Suhewan",
     text: "ポップアップ、初出店、イベント寄りを見るならここです。毎回当たり外れはありますが、その時点で上海の若い人が見ているものに近づきやすいです。",
     tags: ["ポップアップ", "first stores", "Labelhood", "イベント寄り"],
+    places: [
+      {
+        name: "Yongyuan Road",
+        address: "Yongyuan Road, near West Nanjing Road, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=Yongyuan+Road+Shanghai",
+      },
+      {
+        name: "Suhe Haus / Suhewan",
+        address: "Suhewan area, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=Suhewan+Shanghai+Suhe+Haus",
+      },
+      {
+        name: "Peacebird Super Flagship",
+        address: "Room A1-1, 1F, No 409 East Nanjing Road",
+        map: "https://www.google.com/maps/search/?api=1&query=409+East+Nanjing+Road+Shanghai+Peacebird",
+      },
+    ],
     links: [
       {
         title: "Yongyuan Road",
@@ -843,6 +901,25 @@ function renderFashionGrid(targetId, items) {
       <div class="fashion-tags">
         ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
       </div>
+      ${
+        item.places
+          ? `
+            <div class="fashion-place-list">
+              ${item.places
+                .map(
+                  (place) => `
+                    <div class="fashion-place">
+                      <strong>${place.name}</strong>
+                      <span>${place.address}</span>
+                      <a href="${place.map}" target="_blank" rel="noreferrer noopener">地図で開く</a>
+                    </div>
+                  `
+                )
+                .join("")}
+            </div>
+          `
+          : ""
+      }
       <div class="fashion-links">
         ${item.links
           .map(
