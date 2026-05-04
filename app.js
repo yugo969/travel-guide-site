@@ -409,8 +409,8 @@ const fashionTrends = [
   },
   {
     title: "ストリート寄りの服は淮海中路（わいかいちゅうろ）で見比べやすい",
-    text: "オーバーサイズ、ユニセックス、スポーツ寄りの服を見るなら淮海中路が分かりやすいです。大きい路面店や旗艦店が多く、国内ブランドと海外ブランドの差も一度に見比べられます。",
-    tags: ["ストリート", "ユニセックス", "旗艦店"],
+    text: "オーバーサイズ、ユニセックス、スポーツ寄りの空気を見るなら淮海中路が分かりやすいです。店に入らなくても、看板や路面の作り、若い人の服装で街の方向性がかなり伝わります。",
+    tags: ["ストリート", "ユニセックス", "路面店"],
     image: {
       src: "./images/fashion-headwear.png",
       alt: "上海の店頭に並ぶ帽子や小物のディスプレイ",
@@ -427,7 +427,7 @@ const fashionTrends = [
   },
   {
     title: "小物と独立系ショップも一緒に見る",
-    text: "いまの若い層は、服一式よりも帽子、アクセサリー、バッグ、小物で雰囲気を整えることも多いです。独立系デザイナーの店やセレクトショップは、巨鹿路や富民路の周辺でまとめて見ると分かりやすいです。",
+    text: "いまの若い層は、服一式よりも帽子、アクセサリー、バッグ、小物で雰囲気を整えることも多いです。巨鹿路や富民路の周辺は、店先やショーウィンドウを見るだけでも独立系の空気が分かりやすいエリアです。",
     tags: ["独立系", "小物", "デザイナーズ"],
     image: {
       src: "./images/fashion-fullycafe.jpg",
@@ -448,8 +448,8 @@ const fashionTrends = [
 const fashionAreas = [
   {
     title: "淮海中路（わいかいちゅうろ）",
-    text: "最初に歩くならここです。中国の若い層向けの話題店と大手旗艦店をまとめて見られます。いわゆる『今の上海っぽさ』を一番つかみやすい通りです。",
-    tags: ["Masonprince", "Adidas", "Uniqlo", "旗艦店集中"],
+    text: "最初に歩くならここです。若い人が集まる路面店や大きい店舗が続き、いわゆる『今の上海っぽさ』を一番つかみやすい通りです。買わなくても十分おもしろいエリアです。",
+    tags: ["幅広い歩道", "大きい路面店", "人通り多め", "街の勢い"],
     image: {
       src: "./images/fashion-huaihai-road.jpg",
       alt: "上海の淮海路に並ぶ商業ビルと通り",
@@ -458,14 +458,9 @@ const fashionAreas = [
     },
     places: [
       {
-        name: "Middle Huaihai Road",
+        name: "淮海中路を歩く",
         address: "Middle Huaihai Road, Huangpu District, Shanghai",
         map: "https://www.google.com/maps/search/?api=1&query=Middle+Huaihai+Road+Huangpu+Shanghai",
-      },
-      {
-        name: "Masonprince 旗艦店周辺",
-        address: "Middle Huaihai Road, Huangpu District",
-        map: "https://www.google.com/maps/search/?api=1&query=Masonprince+Middle+Huaihai+Road+Shanghai",
       },
     ],
     links: [
@@ -478,8 +473,8 @@ const fashionAreas = [
   },
   {
     title: "巨鹿路（きょろくろ）・富民路（ふみんろ）・長楽路（ちょうらくろ）",
-    text: "独立系デザイナーや小さな店を回るならこの三本です。量販店よりも、店ごとの世界観やセレクトを見るエリアで、若い上海の感覚を知るにはかなり向いています。",
-    tags: ["Labelhood", "Xifang", "Julu", "Fumin"],
+    text: "小さな店や独立系の空気を見るならこの三本です。量販店よりも、店ごとの世界観や通りの雰囲気を楽しむエリアで、ぶらぶら歩くのに向いています。",
+    tags: ["並木道", "独立系", "カフェ併設", "街歩き向け"],
     image: {
       src: "./images/fashion-julu-road.jpg",
       alt: "巨鹿路のショップとカフェの外観",
@@ -488,19 +483,14 @@ const fashionAreas = [
     },
     places: [
       {
-        name: "Labelhood",
-        address: "No 184 Fumin Road, Jing'an District",
-        map: "https://www.google.com/maps/search/?api=1&query=184+Fumin+Road+Shanghai+Labelhood",
+        name: "巨鹿路・富民路・長楽路を歩く",
+        address: "Julu Road / Fumin Road / Changle Road, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=Julu+Road+Fumin+Road+Changle+Road+Shanghai",
       },
       {
         name: "Xifang",
         address: "No 720 Changle Road, Jing'an District",
         map: "https://www.google.com/maps/search/?api=1&query=720+Changle+Road+Shanghai+Xifang",
-      },
-      {
-        name: "Labelhood House",
-        address: "No 796 Julu Road, Jing'an District",
-        map: "https://www.google.com/maps/search/?api=1&query=796+Julu+Road+Shanghai+Labelhood+House",
       },
     ],
     links: [
@@ -514,7 +504,7 @@ const fashionAreas = [
   {
     title: "延慶路（えんけいろ）・東湖路（とうころ）・Yan Qing Li",
     text: "服だけでなく、ライフスタイル寄りの店や雑貨も見たいならここです。並木道のある低層エリアで、路地を歩きながら小さな店を見つける楽しさがあります。",
-    tags: ["Goodbai", "小規模店", "ライフスタイル", "徐匯"],
+    tags: ["低層の街並み", "ライフスタイル", "路地", "徐匯"],
     image: {
       src: "./images/fashion-yanqing-goodbai.png",
       alt: "Yan Qing Li 近くの Goodbai 店内とライフスタイル雑貨",
@@ -523,14 +513,14 @@ const fashionAreas = [
     },
     places: [
       {
+        name: "延慶路・東湖路を歩く",
+        address: "Yanqing Road / Donghu Road, Xuhui District",
+        map: "https://www.google.com/maps/search/?api=1&query=Yanqing+Road+Donghu+Road+Shanghai",
+      },
+      {
         name: "Yan Qing Li",
         address: "No 110 Yanqing Road, Xuhui District",
         map: "https://www.google.com/maps/search/?api=1&query=110+Yanqing+Road+Shanghai",
-      },
-      {
-        name: "Goodbai Yanqing Road",
-        address: "Yanqing Road area, Xuhui District",
-        map: "https://www.google.com/maps/search/?api=1&query=Goodbai+Yanqing+Road+Shanghai",
       },
     ],
     links: [
@@ -543,8 +533,8 @@ const fashionAreas = [
   },
   {
     title: "永源路（えいげんろ） / Suhewan",
-    text: "ポップアップ、初出店、イベント寄りの店を見るならここです。固定の名店を回るというより、その時点で話題になっている場所を見に行くエリアです。",
-    tags: ["ポップアップ", "first stores", "Labelhood", "イベント寄り"],
+    text: "イベント感のある新しい商業空間や、蘇州河沿いの整った景色を見たいならここです。固定の名店を回るより、上海の新しめの雰囲気を見る場所として向いています。",
+    tags: ["蘇州河沿い", "新しい商業空間", "イベント感", "広め"],
     image: {
       src: "./images/fashion-suhewan.jpg",
       alt: "蘇州河沿いにある Suhewan MixC World の外観",
@@ -553,19 +543,14 @@ const fashionAreas = [
     },
     places: [
       {
-        name: "Yongyuan Road",
-        address: "Yongyuan Road, near West Nanjing Road, Jing'an District",
-        map: "https://www.google.com/maps/search/?api=1&query=Yongyuan+Road+Shanghai",
-      },
-      {
-        name: "Suhe Haus / Suhewan",
+        name: "Suhewan を歩く",
         address: "Suhewan area, Jing'an District",
         map: "https://www.google.com/maps/search/?api=1&query=Suhewan+Shanghai+Suhe+Haus",
       },
       {
-        name: "Peacebird Super Flagship",
-        address: "Room A1-1, 1F, No 409 East Nanjing Road",
-        map: "https://www.google.com/maps/search/?api=1&query=409+East+Nanjing+Road+Shanghai+Peacebird",
+        name: "永源路",
+        address: "Yongyuan Road, near West Nanjing Road, Jing'an District",
+        map: "https://www.google.com/maps/search/?api=1&query=Yongyuan+Road+Shanghai",
       },
     ],
     links: [
