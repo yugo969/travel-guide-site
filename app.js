@@ -609,27 +609,15 @@ function renderLiveWeatherCards(items) {
           </div>
           <div class="weather-temp-row">
             <strong>${Math.round(item.current.temperature_2m)}°C</strong>
-            <span>${meta.label}</span>
+            <span class="weather-condition-badge">${meta.label}</span>
           </div>
-          <dl class="weather-stats">
-            <div>
-              <dt>体感</dt>
-              <dd>${Math.round(item.current.apparent_temperature)}°C</dd>
-            </div>
-            <div>
-              <dt>風</dt>
-              <dd>${Math.round(item.current.wind_speed_10m)} km/h</dd>
-            </div>
-            <div>
-              <dt>最高 / 最低</dt>
-              <dd>${Math.round(item.daily.temperature_2m_max[0])} / ${Math.round(item.daily.temperature_2m_min[0])}°C</dd>
-            </div>
-            <div>
-              <dt>降水確率</dt>
-              <dd>${item.daily.precipitation_probability_max[0] ?? 0}%</dd>
-            </div>
-          </dl>
-          <p class="weather-updated">現地時刻 ${formatWeatherTimestamp(item.current.time)} 時点</p>
+          <div class="weather-chip-row">
+            <span class="weather-chip">体感 ${Math.round(item.current.apparent_temperature)}°C</span>
+            <span class="weather-chip">風 ${Math.round(item.current.wind_speed_10m)} km/h</span>
+            <span class="weather-chip">最高/最低 ${Math.round(item.daily.temperature_2m_max[0])} / ${Math.round(item.daily.temperature_2m_min[0])}°C</span>
+            <span class="weather-chip">降水 ${item.daily.precipitation_probability_max[0] ?? 0}%</span>
+          </div>
+          <p class="weather-updated">${formatWeatherTimestamp(item.current.time)} 時点</p>
         </article>
       `;
     })
