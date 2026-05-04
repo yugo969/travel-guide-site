@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Guide Starter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <p class="eyebrow">Publishing Starter</p>
+      <h1>Travel Guide Site</h1>
+      <p class="lede">
+        単発の旅行しおりでも、複数都市をまたぐ旅程でも、そのまま公開できる静的サイトの雛形。
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="section-head">
+          <h2>Trip Summary</h2>
+          <p>あとから旅程データだけ差し替えれば、そのまま別の旅行にも流用できます。</p>
+        </div>
+        <div class="summary-grid">
+          <article>
+            <span class="label">Theme</span>
+            <strong>Urban scale, transit, and atmosphere</strong>
+          </article>
+          <article>
+            <span class="label">Format</span>
+            <strong>Static HTML/CSS/JS</strong>
+          </article>
+          <article>
+            <span class="label">Deploy</span>
+            <strong>GitHub Pages / Netlify</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <h2>Route Diagram</h2>
+          <p>都市間移動の順番と所要時間を図として表示します。</p>
+        </div>
+        <div id="route-diagram" class="diagram-shell"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <h2>Schedule</h2>
+          <p>日別の旅程をこの下に並べていきます。</p>
+        </div>
+        <div id="schedule" class="schedule-list"></div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
