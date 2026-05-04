@@ -40,6 +40,9 @@ body {
   width: min(1120px, calc(100% - 32px));
   margin: 18px auto 0;
   padding: 12px;
+  position: sticky;
+  top: 12px;
+  z-index: 40;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: rgba(255, 251, 245, 0.7);
@@ -220,6 +223,10 @@ h1 {
   padding-bottom: 64px;
 }
 
+.section-shell {
+  scroll-margin-top: 92px;
+}
+
 .section-shell + .section-shell {
   margin-top: 32px;
 }
@@ -234,6 +241,10 @@ h1 {
 
 .references-section {
   --section-accent: var(--gold);
+}
+
+.fashion-section {
+  --section-accent: var(--teal);
 }
 
 .schedule-section {
@@ -641,6 +652,82 @@ h1 {
   gap: 14px;
 }
 
+.fashion-trend-grid,
+.fashion-area-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.fashion-trend-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fashion-area-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.fashion-card {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 14px 32px var(--shadow);
+  padding: 18px;
+}
+
+.fashion-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.fashion-card strong {
+  display: block;
+  font-size: 1.08rem;
+}
+
+.fashion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.fashion-tags span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(23, 20, 17, 0.05);
+  border: 1px solid rgba(23, 20, 17, 0.08);
+  font-size: 0.82rem;
+}
+
+.fashion-links {
+  display: grid;
+  gap: 10px;
+}
+
+.fashion-links a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 16px;
+  background: rgba(23, 20, 17, 0.04);
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid rgba(23, 20, 17, 0.06);
+}
+
+.fashion-links a:hover {
+  background: rgba(23, 20, 17, 0.08);
+}
+
+.fashion-links span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
 .scene-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -802,6 +889,8 @@ h1 {
   .notes-grid,
   .scene-grid,
   .highlight-grid,
+  .fashion-trend-grid,
+  .fashion-area-grid,
   .reference-grid,
   .legend-grid,
   .schedule-grid {
@@ -843,6 +932,9 @@ h1 {
   .topnav {
     margin-top: 10px;
     justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .hero {

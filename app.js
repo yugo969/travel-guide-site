@@ -383,6 +383,106 @@ const references = [
   },
 ];
 
+const fashionTrends = [
+  {
+    title: "国潮と新中式は、まだ強い",
+    text: "中国の若い層では、国内ブランドや中国的な意匠を今のシルエットで着る流れが強いです。買うなら、露骨なコスプレ感より、ボタンや刺繍、襟元だけ中国的なものの方が街で使いやすいです。",
+    tags: ["国潮", "新中式", "伝統要素×現代服"],
+    links: [
+      {
+        title: "Xinhua: Gen Z と Guochao",
+        note: "中国の若い消費者で国潮が強い流れを整理した記事。",
+        href: "https://english.news.cn/20260331/793c0280a58a460d902b0838ce1ef5a4/c.html",
+      },
+      {
+        title: "CGTN: Neo-Chinese の広がり",
+        note: "新中式が流行語化している背景の整理。",
+        href: "https://news.cgtn.com/news/2025-12-19/Design-in-China-The-cultural-renaissance-of-fashion-1JesO5wVpfy/p.html",
+      },
+    ],
+  },
+  {
+    title: "オーバーサイズ街着は、淮海路で拾いやすい",
+    text: "ストリート寄り、ユニセックス寄り、写真映えする旗艦店体験は、上海では中部淮海路が一番分かりやすいです。国内外ブランドを一気に見比べるならここが早いです。",
+    tags: ["ストリート", "ユニセックス", "旗艦店"],
+    links: [
+      {
+        title: "上海市: Middle Huaihai Road",
+        note: "Masonprince など若い層を集めるブランド動向。",
+        href: "https://english.shanghai.gov.cn/en-FirstStores/20240815/25cf12f551e547fbb1410bc4e26d9839.html",
+      },
+    ],
+  },
+  {
+    title: "服だけでなく、小物と独立系も見る",
+    text: "若い層の買い方は、フルコーデ一式より、帽子、アクセ、バッグチャーム、小物で空気を作る感じも強いです。独立系は Labelhood 周辺でまとめて見た方が効率がいいです。",
+    tags: ["独立系", "小物", "デザイナーズ"],
+    links: [
+      {
+        title: "上海市: Jing'an の trendy stores",
+        note: "Labelhood、Xifang などを含む回遊導線。",
+        href: "https://english.shanghai.gov.cn/en-TrendyStores/20240313/95a2c50df38b4b148f0ddbb6ae16490f.html",
+      },
+    ],
+  },
+];
+
+const fashionAreas = [
+  {
+    title: "中部淮海路",
+    text: "まず1本目に歩くならここです。中国の若い層向けの話題店と大手旗艦店をまとめて見られます。街の雰囲気も一番『上海ファッション』っぽいです。",
+    tags: ["Masonprince", "Adidas", "Uniqlo", "旗艦店集中"],
+    links: [
+      {
+        title: "Middle Huaihai Road",
+        note: "若い客層を集める fashion frontier としての整理。",
+        href: "https://english.shanghai.gov.cn/en-FirstStores/20240815/25cf12f551e547fbb1410bc4e26d9839.html",
+      },
+    ],
+  },
+  {
+    title: "巨鹿路・富民路・長楽路",
+    text: "独立系デザイナーや小さい店を回るならこの三本です。量販寄りではなく、店ごとの世界観やセレクトを見るエリアです。中国っぽい今の感覚を拾いたいならかなり強いです。",
+    tags: ["Labelhood", "Xifang", "Julu", "Fumin"],
+    links: [
+      {
+        title: "Jing'an city walk",
+        note: "Labelhood、Xifang などの具体的な並びが分かる。",
+        href: "https://english.shanghai.gov.cn/en-TrendyStores/20240313/95a2c50df38b4b148f0ddbb6ae16490f.html",
+      },
+    ],
+  },
+  {
+    title: "延慶路・東湖路・Yan Qing Li",
+    text: "服だけでなく、ライフスタイル寄りの若い店を見たいならここです。街路樹のある低層エリアで、ぶらつきながら小さな店を拾うのに向いています。",
+    tags: ["Goodbai", "小規模店", "ライフスタイル", "徐匯"],
+    links: [
+      {
+        title: "Yan Qing Li shopping area",
+        note: "若い層向けの小さな店が集まる再開発エリア。",
+        href: "https://english.shanghai.gov.cn/en-SpecialtyShoppingAreas/20251225/41d4b4a69b9c4a9388293fc171463494.html",
+      },
+    ],
+  },
+  {
+    title: "永源路 / Suhewan",
+    text: "ポップアップ、初出店、イベント寄りを見るならここです。毎回当たり外れはありますが、その時点で上海の若い人が見ているものに近づきやすいです。",
+    tags: ["ポップアップ", "first stores", "Labelhood", "イベント寄り"],
+    links: [
+      {
+        title: "Yongyuan Road",
+        note: "first stores と pop-up が集まる新しい通り。",
+        href: "https://english.shanghai.gov.cn/en-FirstStores/20260128/7272bffab0814ae6adf3cb19cf4f578a.html",
+      },
+      {
+        title: "Labelhood at Suhewan",
+        note: "中国の若いデザイナー文脈を見る入口。",
+        href: "https://english.shanghai.gov.cn/en-LatestEvents/20251016/f7d8ad1fd3a3489c95372df6830ecde2.html",
+      },
+    ],
+  },
+];
+
 const highlights = [
   {
     city: "上海",
@@ -730,6 +830,36 @@ function renderReferences() {
   );
 }
 
+function renderFashionGrid(targetId, items) {
+  renderCollection(
+    targetId,
+    items,
+    (item) => `
+      <div class="reference-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg("spark")}</span>
+        <strong>${item.title}</strong>
+      </div>
+      <p>${item.text}</p>
+      <div class="fashion-tags">
+        ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
+      </div>
+      <div class="fashion-links">
+        ${item.links
+          .map(
+            (link) => `
+              <a href="${link.href}" target="_blank" rel="noreferrer noopener">
+                <strong>${link.title}</strong>
+                <span>${link.note}</span>
+              </a>
+            `
+          )
+          .join("")}
+      </div>
+    `,
+    "fashion-card"
+  );
+}
+
 function renderScenes() {
   renderCollection(
     "scene-grid",
@@ -924,6 +1054,8 @@ renderTravelTools();
 renderHighlights();
 renderScenes();
 renderReferences();
+renderFashionGrid("fashion-trend-grid", fashionTrends);
+renderFashionGrid("fashion-area-grid", fashionAreas);
 renderSchedule();
 renderSupportNotes("weather-list", weatherNotes);
 renderSupportNotes("packing-list", packingNotes);
