@@ -109,12 +109,11 @@ body {
 }
 
 .hero-card {
-  padding: 26px 24px;
+  padding: 0;
   border-radius: 26px;
+  overflow: hidden;
   align-self: stretch;
-  background:
-    linear-gradient(165deg, rgba(169, 63, 37, 0.12), rgba(15, 89, 99, 0.08)),
-    var(--paper-strong);
+  background: var(--paper-strong);
 }
 
 .eyebrow,
@@ -146,6 +145,25 @@ h1 {
 .hero-card h2 {
   margin-bottom: 14px;
   font-size: 1.5rem;
+}
+
+.hero-photo {
+  min-height: 240px;
+  background:
+    linear-gradient(180deg, rgba(17, 14, 12, 0.12), rgba(17, 14, 12, 0.28)),
+    url("./images/shanghai.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-card-body {
+  padding: 20px 22px 24px;
+}
+
+.hero-card-text {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .lede {
@@ -406,6 +424,42 @@ h1 {
   gap: 14px;
 }
 
+.scene-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.scene-card {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 32px var(--shadow);
+}
+
+.scene-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.scene-card-body {
+  padding: 14px 16px 16px;
+}
+
+.scene-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.scene-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .highlight-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -421,26 +475,9 @@ h1 {
 }
 
 .highlight-visual {
-  position: relative;
-  min-height: 340px;
+  min-height: 240px;
   background-size: cover;
   background-position: center;
-}
-
-.highlight-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(12, 10, 9, 0.06), rgba(12, 10, 9, 0.76)),
-    linear-gradient(160deg, rgba(169, 63, 37, 0.22), rgba(15, 89, 99, 0.14));
-}
-
-.highlight-copy {
-  position: absolute;
-  inset: auto 18px 18px 18px;
-  z-index: 1;
-  color: #fff8f1;
 }
 
 .highlight-copy h3 {
@@ -450,7 +487,7 @@ h1 {
 
 .highlight-copy p {
   margin: 0 0 14px;
-  color: rgba(255, 248, 241, 0.92);
+  color: var(--muted);
   line-height: 1.6;
 }
 
@@ -463,9 +500,13 @@ h1 {
 .highlight-tags span {
   padding: 7px 10px;
   border-radius: 999px;
-  background: rgba(255, 248, 241, 0.16);
-  border: 1px solid rgba(255, 248, 241, 0.18);
+  background: rgba(23, 20, 17, 0.05);
+  border: 1px solid rgba(23, 20, 17, 0.08);
   font-size: 0.84rem;
+}
+
+.highlight-copy {
+  padding: 18px;
 }
 
 .reference-card {
@@ -474,47 +515,11 @@ h1 {
   background: rgba(255, 255, 255, 0.78);
   overflow: hidden;
   box-shadow: 0 14px 32px var(--shadow);
-}
-
-.reference-visual {
-  position: relative;
-  min-height: 250px;
-  background-size: cover;
-  background-position: center;
-}
-
-.reference-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(12, 10, 9, 0.08), rgba(12, 10, 9, 0.7)),
-    linear-gradient(135deg, rgba(169, 63, 37, 0.28), rgba(15, 89, 99, 0.16));
-}
-
-.reference-visual-copy {
-  position: absolute;
-  inset: auto 18px 18px 18px;
-  z-index: 1;
-  color: #fff8f1;
-}
-
-.reference-visual-copy .mini-label {
-  color: rgba(255, 248, 241, 0.88);
-}
-
-.reference-visual-copy h3 {
-  margin: 0 0 8px;
-  font-size: 1.5rem;
-}
-
-.reference-visual-copy p {
-  margin: 0;
-  color: rgba(255, 248, 241, 0.9);
+  padding: 18px;
 }
 
 .reference-body {
-  padding: 18px;
+  padding: 0;
 }
 
 .reference-card-head {
@@ -571,6 +576,7 @@ h1 {
   .hero,
   .two-column,
   .metric-grid,
+  .scene-grid,
   .highlight-grid,
   .reference-grid,
   .legend-grid,

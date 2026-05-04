@@ -146,7 +146,6 @@ const references = [
   {
     city: "上海",
     icon: "skyline",
-    image: "./images/shanghai.jpg",
     label: "超高層と旧租界",
     text: "超高層の圧と、法租界の歩きやすさが同居する都市。まずは広さ、その次に歩いたときのテンポを見ると理解しやすいです。",
     links: [
@@ -170,7 +169,6 @@ const references = [
   {
     city: "杭州",
     icon: "spark",
-    image: "./images/hangzhou.jpg",
     label: "水辺と余白",
     text: "西湖だけだと像がぼやけやすいので、水辺の静けさと実際の散策導線を一緒に見ると雰囲気が入りやすいです。",
     links: [
@@ -194,7 +192,6 @@ const references = [
   {
     city: "蘇州",
     icon: "layers",
-    image: "./images/suzhou.jpg",
     label: "庭園と旧市街",
     text: "庭園都市として理解されがちですが、旧市街の水辺や夜の気配まで見ると、静けさだけではない厚みが分かります。",
     links: [
@@ -235,6 +232,24 @@ const highlights = [
     image: "./images/suzhou.jpg",
     text: "古い庭園都市ではなく、歴史と豊かさが今も繋がっている場所として見ると、旅の厚みが出ます。",
     tags: ["庭園", "旧市街", "江南の厚み"],
+  },
+];
+
+const scenes = [
+  {
+    title: "上海の街路感",
+    image: "./images/shanghai-french.jpg",
+    text: "高層群だけでなく、法租界の並木道と低層の街路も上海の魅力です。",
+  },
+  {
+    title: "杭州の茶畑",
+    image: "./images/hangzhou-tea.jpg",
+    text: "西湖の観光だけではなく、茶畑の地形と静けさで杭州らしさが深まります。",
+  },
+  {
+    title: "蘇州の旧市街入口",
+    image: "./images/suzhou-pingjiang.jpg",
+    text: "庭園の内側だけでなく、旧市街へ入る導入部の空気も蘇州の体験です。",
   },
 ];
 
@@ -332,18 +347,15 @@ function renderReferences() {
     "reference-grid",
     references,
     (item) => `
-      <div class="reference-visual" style="background-image:url('${item.image}')">
-        <div class="reference-visual-copy">
-          <span class="mini-label">${item.label}</span>
-          <h3>${item.city}</h3>
-          <p>${item.text}</p>
-        </div>
-      </div>
       <div class="reference-body">
         <div class="reference-card-head">
           <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
-          <strong>${item.city}を理解するための入口</strong>
+          <div>
+            <span class="mini-label">${item.label}</span>
+            <strong>${item.city}を理解するための入口</strong>
+          </div>
         </div>
+        <p>${item.text}</p>
         <div class="reference-links">
           ${item.links
             .map(
@@ -362,19 +374,33 @@ function renderReferences() {
   );
 }
 
+function renderScenes() {
+  renderCollection(
+    "scene-grid",
+    scenes,
+    (item) => `
+      <img src="${item.image}" alt="${item.title}" />
+      <div class="scene-card-body">
+        <strong>${item.title}</strong>
+        <p>${item.text}</p>
+      </div>
+    `,
+    "scene-card"
+  );
+}
+
 function renderHighlights() {
   renderCollection(
     "highlight-grid",
     highlights,
     (item) => `
-      <div class="highlight-visual" style="background-image:url('${item.image}')">
-        <div class="highlight-copy">
-          <span class="mini-label">この都市で見るべきもの</span>
-          <h3>${item.city}</h3>
-          <p>${item.text}</p>
-          <div class="highlight-tags">
-            ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
-          </div>
+      <div class="highlight-visual" style="background-image:url('${item.image}')"></div>
+      <div class="highlight-copy">
+        <span class="mini-label">この都市で見るべきもの</span>
+        <h3>${item.city}</h3>
+        <p>${item.text}</p>
+        <div class="highlight-tags">
+          ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
         </div>
       </div>
     `,
@@ -508,6 +534,7 @@ renderReasons();
 renderDiagram();
 renderLegend();
 renderHighlights();
+renderScenes();
 renderReferences();
 renderSchedule();
 renderNotes();
