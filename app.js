@@ -601,15 +601,15 @@ function renderLiveWeatherCards(items) {
       return `
         <article class="weather-card weather-${meta.accent}">
           <div class="weather-card-head">
-            <div>
-              <span class="mini-label">現在</span>
+            <div class="weather-title-row">
               <h4>${item.name}</h4>
+              <strong class="weather-inline-temp">${Math.round(item.current.temperature_2m)}°C</strong>
             </div>
             <span class="weather-icon" aria-hidden="true">${weatherIcon(item.current.weather_code, item.current.is_day)}</span>
           </div>
-          <div class="weather-temp-row">
-            <strong>${Math.round(item.current.temperature_2m)}°C</strong>
+          <div class="weather-meta-row">
             <span class="weather-condition-badge">${meta.label}</span>
+            <span class="weather-updated">${formatWeatherTimestamp(item.current.time)} 時点</span>
           </div>
           <div class="weather-chip-row">
             <span class="weather-chip">体感 ${Math.round(item.current.apparent_temperature)}°C</span>
@@ -617,7 +617,6 @@ function renderLiveWeatherCards(items) {
             <span class="weather-chip">最高/最低 ${Math.round(item.daily.temperature_2m_max[0])} / ${Math.round(item.daily.temperature_2m_min[0])}°C</span>
             <span class="weather-chip">降水 ${item.daily.precipitation_probability_max[0] ?? 0}%</span>
           </div>
-          <p class="weather-updated">${formatWeatherTimestamp(item.current.time)} 時点</p>
         </article>
       `;
     })

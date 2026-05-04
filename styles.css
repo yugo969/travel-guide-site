@@ -458,10 +458,17 @@ h1 {
 
 .weather-card-head {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+}
+
+.weather-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
 }
 
 .weather-card h4 {
@@ -469,20 +476,13 @@ h1 {
   font-size: 1.1rem;
 }
 
-.weather-icon {
-  font-size: 1.45rem;
+.weather-inline-temp {
+  font-size: 1.25rem;
   line-height: 1;
 }
 
-.weather-temp-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.weather-temp-row strong {
-  font-size: 1.7rem;
+.weather-icon {
+  font-size: 1.45rem;
   line-height: 1;
 }
 
@@ -495,6 +495,14 @@ h1 {
   color: var(--muted);
   font-size: 0.82rem;
   line-height: 1;
+}
+
+.weather-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .weather-chip-row {
@@ -515,7 +523,6 @@ h1 {
 }
 
 .weather-updated {
-  margin: 8px 0 0;
   color: var(--muted);
   font-size: 0.76rem;
 }
