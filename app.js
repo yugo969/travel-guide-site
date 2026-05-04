@@ -385,9 +385,15 @@ const references = [
 
 const fashionTrends = [
   {
-    title: "国潮と新中式は、まだ強い",
-    text: "中国の若い層では、国内ブランドや中国的な意匠を今のシルエットで着る流れが強いです。買うなら、露骨なコスプレ感より、ボタンや刺繍、襟元だけ中国的なものの方が街で使いやすいです。",
-    tags: ["国潮", "新中式", "伝統要素×現代服"],
+    title: "国潮（グオチャオ）と新中式（しんちゅうしき）",
+    text: "いまの中国では、中国ブランドや中国らしい意匠を、普段着として今風に着る流れが広がっています。刺繍やボタン、襟元などに伝統要素を少し入れた服が中心で、旅行中にも取り入れやすい雰囲気です。",
+    tags: ["中国ブランド", "新中式", "伝統要素×現代服"],
+    image: {
+      src: "https://video.cgtn.com/news/2024-04-14/1713076312231cVYnp0QX2S0l0M1713076319185.jpg",
+      alt: "中国の新中式ファッションを紹介する映像のサムネイル",
+      credit: "CGTN",
+      href: "https://news.cgtn.com/news/2024-04-14/New-Chinese-style-Chinese-aesthetics-influence-the-fashion-industry-1sN9G1oijok/index.html",
+    },
     links: [
       {
         title: "Xinhua: Gen Z と Guochao",
@@ -402,9 +408,15 @@ const fashionTrends = [
     ],
   },
   {
-    title: "オーバーサイズ街着は、淮海路で拾いやすい",
-    text: "ストリート寄り、ユニセックス寄り、写真映えする旗艦店体験は、上海では中部淮海路が一番分かりやすいです。国内外ブランドを一気に見比べるならここが早いです。",
+    title: "ストリート寄りの服は淮海中路（わいかいちゅうろ）で見比べやすい",
+    text: "オーバーサイズ、ユニセックス、スポーツ寄りの服を見るなら淮海中路が分かりやすいです。大きい路面店や旗艦店が多く、国内ブランドと海外ブランドの差も一度に見比べられます。",
     tags: ["ストリート", "ユニセックス", "旗艦店"],
+    image: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Huaihai%20Road%202279.JPG",
+      alt: "上海の淮海路の街並み",
+      credit: "J. Patrick Fischer / Wikimedia Commons",
+      href: "https://commons.wikimedia.org/wiki/File:Huaihai_Road_2279.JPG",
+    },
     links: [
       {
         title: "上海市: Middle Huaihai Road",
@@ -414,9 +426,15 @@ const fashionTrends = [
     ],
   },
   {
-    title: "服だけでなく、小物と独立系も見る",
-    text: "若い層の買い方は、フルコーデ一式より、帽子、アクセ、バッグチャーム、小物で空気を作る感じも強いです。独立系は Labelhood 周辺でまとめて見た方が効率がいいです。",
+    title: "小物と独立系ショップも一緒に見る",
+    text: "いまの若い層は、服一式よりも帽子、アクセサリー、バッグ、小物で雰囲気を整えることも多いです。独立系デザイナーの店やセレクトショップは、巨鹿路や富民路の周辺でまとめて見ると分かりやすいです。",
     tags: ["独立系", "小物", "デザイナーズ"],
+    image: {
+      src: "https://english.shanghai.gov.cn/en-CityTour/20250314/images/5c4ccf93f0fb4c08aeb35f572fe30428.jpg",
+      alt: "巨鹿路のカフェとショップが並ぶ街並み",
+      credit: "Jing'an district administration of culture and tourism",
+      href: "https://english.shanghai.gov.cn/en-CityTour/20250314/9718ba40a4b6422db85f2dcb6cea7f2f.html",
+    },
     links: [
       {
         title: "上海市: Jing'an の trendy stores",
@@ -429,9 +447,15 @@ const fashionTrends = [
 
 const fashionAreas = [
   {
-    title: "中部淮海路",
-    text: "まず1本目に歩くならここです。中国の若い層向けの話題店と大手旗艦店をまとめて見られます。街の雰囲気も一番『上海ファッション』っぽいです。",
+    title: "淮海中路（わいかいちゅうろ）",
+    text: "最初に歩くならここです。中国の若い層向けの話題店と大手旗艦店をまとめて見られます。いわゆる『今の上海っぽさ』を一番つかみやすい通りです。",
     tags: ["Masonprince", "Adidas", "Uniqlo", "旗艦店集中"],
+    image: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Huaihai%20Road%202292.jpg",
+      alt: "上海の淮海路に並ぶ商業ビルと通り",
+      credit: "J. Patrick Fischer / Wikimedia Commons",
+      href: "https://commons.wikimedia.org/wiki/File:Huaihai_Road_2292.jpg",
+    },
     places: [
       {
         name: "Middle Huaihai Road",
@@ -453,9 +477,15 @@ const fashionAreas = [
     ],
   },
   {
-    title: "巨鹿路・富民路・長楽路",
-    text: "独立系デザイナーや小さい店を回るならこの三本です。量販寄りではなく、店ごとの世界観やセレクトを見るエリアです。中国っぽい今の感覚を拾いたいならかなり強いです。",
+    title: "巨鹿路（きょろくろ）・富民路（ふみんろ）・長楽路（ちょうらくろ）",
+    text: "独立系デザイナーや小さな店を回るならこの三本です。量販店よりも、店ごとの世界観やセレクトを見るエリアで、若い上海の感覚を知るにはかなり向いています。",
     tags: ["Labelhood", "Xifang", "Julu", "Fumin"],
+    image: {
+      src: "https://img.shine.cn/images/2025/03/14/4d00a195-f5b4-4c10-b8ca-eac6a0e35208_0.jpg",
+      alt: "巨鹿路のショップとカフェの外観",
+      credit: "Jing'an district administration of culture and tourism",
+      href: "https://english.shanghai.gov.cn/en-CityTour/20250314/9718ba40a4b6422db85f2dcb6cea7f2f.html",
+    },
     places: [
       {
         name: "Labelhood",
@@ -482,9 +512,15 @@ const fashionAreas = [
     ],
   },
   {
-    title: "延慶路・東湖路・Yan Qing Li",
-    text: "服だけでなく、ライフスタイル寄りの若い店を見たいならここです。街路樹のある低層エリアで、ぶらつきながら小さな店を拾うのに向いています。",
+    title: "延慶路（えんけいろ）・東湖路（とうころ）・Yan Qing Li",
+    text: "服だけでなく、ライフスタイル寄りの店や雑貨も見たいならここです。並木道のある低層エリアで、路地を歩きながら小さな店を見つける楽しさがあります。",
     tags: ["Goodbai", "小規模店", "ライフスタイル", "徐匯"],
+    image: {
+      src: "https://english.shanghai.gov.cn/en-SpecialtyShoppingAreas/20251225/images/f439d8a73fbc4abf9dc130a6f0a48e2d.png",
+      alt: "Yan Qing Li の路地と低層の建物",
+      credit: "Shanghai Observer",
+      href: "https://english.shanghai.gov.cn/en-SpecialtyShoppingAreas/20251225/41d4b4a69b9c4a9388293fc171463494.html",
+    },
     places: [
       {
         name: "Yan Qing Li",
@@ -506,9 +542,15 @@ const fashionAreas = [
     ],
   },
   {
-    title: "永源路 / Suhewan",
-    text: "ポップアップ、初出店、イベント寄りを見るならここです。毎回当たり外れはありますが、その時点で上海の若い人が見ているものに近づきやすいです。",
+    title: "永源路（えいげんろ） / Suhewan",
+    text: "ポップアップ、初出店、イベント寄りの店を見るならここです。固定の名店を回るというより、その時点で話題になっている場所を見に行くエリアです。",
     tags: ["ポップアップ", "first stores", "Labelhood", "イベント寄り"],
+    image: {
+      src: "https://english.shanghai.gov.cn/en-ShoppingCenters/20231217/images/c509fc55de4c7597215644bf7dd8e91f.jpg",
+      alt: "蘇州河沿いにある Suhewan MixC World の外観",
+      credit: "CFP",
+      href: "https://english.shanghai.gov.cn/en-ShoppingCenters/20231217/6ab9aec3b6974e369cd1e58765953f66.html",
+    },
     places: [
       {
         name: "Yongyuan Road",
@@ -893,6 +935,19 @@ function renderFashionGrid(targetId, items) {
     targetId,
     items,
     (item) => `
+      ${
+        item.image
+          ? `
+            <figure class="fashion-visual">
+              <img src="${item.image.src}" alt="${item.image.alt}" loading="lazy" />
+              <figcaption>
+                <span>${item.image.alt}</span>
+                <a href="${item.image.href}" target="_blank" rel="noreferrer noopener">${item.image.credit}</a>
+              </figcaption>
+            </figure>
+          `
+          : ""
+      }
       <div class="reference-card-head">
         <span class="icon-chip" aria-hidden="true">${iconSvg("spark")}</span>
         <strong>${item.title}</strong>
