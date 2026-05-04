@@ -127,6 +127,110 @@ const notes = [
   },
 ];
 
+const weatherNotes = [
+  {
+    title: "2026年5月5日時点の上海",
+    text: "上海の予報は晴れベースで 16-26℃。寒さ対策より、昼の日差しと朝晩の気温差に合わせた薄手の羽織りが重要です。",
+    icon: "pace",
+    links: [
+      {
+        title: "上海の最新予報",
+        note: "5月5日の予報。16-26℃、降水はほぼなし、UVは高め。",
+        href: "https://weather2weeks.com/en/w/shanghai%2Cchina/3day",
+      },
+    ],
+  },
+  {
+    title: "杭州・蘇州の5月上旬",
+    text: "杭州の5月平均は最高26℃前後・最低17℃前後、蘇州も最高25℃前後・最低18℃前後。4月より雨が増えるので、折りたたみ傘は持っていた方が安全です。",
+    icon: "rest",
+    links: [
+      {
+        title: "杭州の5月平均",
+        note: "最高26.1℃ / 最低17.4℃ / 月降水量159mmの目安。",
+        href: "https://en.climate-data.org/asia/china/zhejiang/hangzhou-2330/t/may-5/",
+      },
+      {
+        title: "蘇州の5月平均",
+        note: "最高25.2℃ / 最低17.6℃ / 月降水量148mmの目安。",
+        href: "https://en.climate-data.org/asia/china/jiangsu/suzhou-2755/t/may-5/",
+      },
+    ],
+  },
+  {
+    title: "服装の結論",
+    text: "半袖だけで押し切るより、薄手の長袖、歩きやすい靴、折りたたみ傘で整える方が外しにくいです。屋内冷房と夜の移動で冷える前提で考えた方が楽です。",
+    icon: "layers",
+  },
+];
+
+const packingNotes = [
+  {
+    title: "海外旅行として追加で持つもの",
+    text: "パスポート原本だけでなく、顔写真ページの控え、予備カード、少額現金、モバイルバッテリーは分散して持つと事故に強くなります。",
+    icon: "wallet",
+  },
+  {
+    title: "中国向けに外しにくいもの",
+    text: "eSIM か通信バックアップ、変換プラグ、USB充電器、翻訳アプリ、常備薬。通信と決済が一度に止まると立て直しが重くなるので、充電手段は厚めに見た方がいいです。",
+    icon: "wifi",
+  },
+  {
+    title: "体調面の保険",
+    text: "水、塩分タブレット、軽食、酔い止め、胃腸薬、睡眠を崩した時の自分の定番を最初から持つ方がいいです。現地で探すより早く、判断負荷も下がります。",
+    icon: "phone",
+  },
+];
+
+const helpNotes = [
+  {
+    title: "まず使う番号",
+    text: "中国国内の共通番号は 警察 110、消防 119、救急 120、交通事故 122 です。盗難や傷害はまず 110、その場で被害届の受理票「報案」を確保する流れが重要です。",
+    icon: "move",
+    links: [
+      {
+        title: "外務省: 中国の安全対策基礎データ",
+        note: "被害時はすぐ 110 通報、報案の確保が重要と案内されています。",
+        href: "https://www.anzen.mofa.go.jp/info/pcsafetymeasure_009.html",
+      },
+    ],
+  },
+  {
+    title: "日本人として頼る先",
+    text: "上海・杭州・蘇州の旅行なら、在上海日本国総領事館が管轄です。生命に関わる緊急事態は、代表電話 021-5257-4766 から夜間・休日でも内線 0 で緊急連絡事務所につながります。",
+    icon: "phone",
+    links: [
+      {
+        title: "在上海日本国総領事館案内",
+        note: "所在地、代表電話、夜間・休日の緊急連絡導線。",
+        href: "https://www.shanghai.cn.emb-japan.go.jp/itpr_ja/annai_j.html",
+      },
+      {
+        title: "総領事館の緊急連絡先一覧",
+        note: "上海・江蘇・浙江が在上海総領事館の管轄と分かります。",
+        href: "https://www.shanghai.cn.emb-japan.go.jp/life/shilingguan.html",
+      },
+    ],
+  },
+  {
+    title: "カードや旅券で詰まったら",
+    text: "カードはまずアプリで利用停止、その後に海外サポートへ連絡。盗難なら警察へ届け出て報案を取り、旅券なら総領事館へ連絡します。出発前にカード会社の海外緊急連絡先をスクショしておくと強いです。",
+    icon: "wallet",
+    links: [
+      {
+        title: "外務省: たびレジ",
+        note: "短期旅行者向け。安全情報配信と緊急時の安否確認に使えます。",
+        href: "https://www.anzen.mofa.go.jp/anzen_campaign/index.html",
+      },
+      {
+        title: "外務省: 海外旅行の安全情報",
+        note: "出発前に見ておくべき入口。保険や事前準備もまとまっています。",
+        href: "https://www.anzen.mofa.go.jp/trip/",
+      },
+    ],
+  },
+];
+
 const travelTools = [
   {
     title: "高鉄の予約と駅の流れ",
@@ -414,6 +518,39 @@ function renderTravelTools() {
   );
 }
 
+function renderSupportNotes(targetId, items) {
+  renderCollection(
+    targetId,
+    items,
+    (item) => `
+      <div class="stack-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+        <strong>${item.title}</strong>
+      </div>
+      <p>${item.text}</p>
+      ${
+        item.links
+          ? `
+            <div class="support-links">
+              ${item.links
+                .map(
+                  (link) => `
+                    <a href="${link.href}" target="_blank" rel="noreferrer noopener">
+                      <strong>${link.title}</strong>
+                      <span>${link.note}</span>
+                    </a>
+                  `
+                )
+                .join("")}
+            </div>
+          `
+          : ""
+      }
+    `,
+    "stack-card support-card"
+  );
+}
+
 function renderLegend() {
   renderCollection(
     "route-legend",
@@ -671,4 +808,7 @@ renderHighlights();
 renderScenes();
 renderReferences();
 renderSchedule();
+renderSupportNotes("weather-list", weatherNotes);
+renderSupportNotes("packing-list", packingNotes);
+renderSupportNotes("help-list", helpNotes);
 renderNotes();
