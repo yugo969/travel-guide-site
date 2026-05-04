@@ -461,7 +461,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .weather-title-row {
@@ -497,14 +497,6 @@ h1 {
   line-height: 1;
 }
 
-.weather-meta-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
 .weather-chip-row {
   display: flex;
   flex-wrap: wrap;
@@ -520,11 +512,6 @@ h1 {
   color: var(--ink);
   font-size: 0.8rem;
   white-space: nowrap;
-}
-
-.weather-updated {
-  color: var(--muted);
-  font-size: 0.76rem;
 }
 
 .weather-sunny {

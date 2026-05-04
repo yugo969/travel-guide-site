@@ -607,11 +607,8 @@ function renderLiveWeatherCards(items) {
             </div>
             <span class="weather-icon" aria-hidden="true">${weatherIcon(item.current.weather_code, item.current.is_day)}</span>
           </div>
-          <div class="weather-meta-row">
-            <span class="weather-condition-badge">${meta.label}</span>
-            <span class="weather-updated">${formatWeatherTimestamp(item.current.time)} 時点</span>
-          </div>
           <div class="weather-chip-row">
+            <span class="weather-condition-badge">${meta.label}</span>
             <span class="weather-chip">体感 ${Math.round(item.current.apparent_temperature)}°C</span>
             <span class="weather-chip">風 ${Math.round(item.current.wind_speed_10m)} km/h</span>
             <span class="weather-chip">最高/最低 ${Math.round(item.daily.temperature_2m_max[0])} / ${Math.round(item.daily.temperature_2m_min[0])}°C</span>
