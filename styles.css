@@ -704,23 +704,21 @@ h1 {
 }
 
 .fashion-visual figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 14px 0;
+  display: grid;
+  gap: 4px;
+  padding: 10px 14px 12px;
   color: var(--muted);
   font-size: 0.77rem;
   line-height: 1.45;
 }
 
 .fashion-visual figcaption span {
-  flex: 1;
+  min-width: 0;
 }
 
 .fashion-visual figcaption a {
   color: var(--teal);
   text-decoration: none;
-  white-space: nowrap;
   font-weight: 700;
 }
 

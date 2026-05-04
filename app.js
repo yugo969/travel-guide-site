@@ -430,8 +430,8 @@ const fashionTrends = [
     text: "いまの若い層は、服一式よりも帽子、アクセサリー、バッグ、小物で雰囲気を整えることも多いです。独立系デザイナーの店やセレクトショップは、巨鹿路や富民路の周辺でまとめて見ると分かりやすいです。",
     tags: ["独立系", "小物", "デザイナーズ"],
     image: {
-      src: "./images/fashion-julu-road.jpg",
-      alt: "巨鹿路のカフェとショップが並ぶ街並み",
+      src: "./images/fashion-fullycafe.jpg",
+      alt: "巨鹿路エリアの独立系カフェショップの外観",
       credit: "Jing'an district administration of culture and tourism",
       href: "https://english.shanghai.gov.cn/en-CityTour/20250314/9718ba40a4b6422db85f2dcb6cea7f2f.html",
     },
