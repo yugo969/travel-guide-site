@@ -21,32 +21,32 @@ const summary = [
   },
 ];
 
-const reasons = [
+const overviewFocus = [
   {
-    title: "上海は初回の中国旅行として正解率が高い",
-    text: "短時間フライトで行けて、都市インフラ、決済、物流、巨大商業圏のスケールを一気に理解できます。",
+    title: "上海で発展の正面を見る",
+    text: "高層群、地下鉄、物流、商業圏の密度を最初に受けるので、中国の規模感を短時間で把握しやすいです。",
   },
   {
-    title: "広げすぎると旅が移動に食われる",
-    text: "北京や深圳まで足すと面白い反面、ホテル移動と長距離移動が増え、体調面のブレに弱くなります。",
+    title: "杭州で上位都市の余裕を見る",
+    text: "湖畔だけでなく、新しい商業や街の落ち着きまで触れると、豊かな大都市圏の別の表情が見えます。",
   },
   {
-    title: "江南圏だけでも中国の厚みは十分見える",
-    text: "上海、杭州、蘇州だけで、現代性、文化の厚み、富の蓄積、交通の成熟までしっかり拾えます。",
+    title: "蘇州で歴史が今につながる感覚を取る",
+    text: "庭園都市として消費するだけでなく、旧市街と経済圏の厚みを並べて見ると、江南の強さが残ります。",
   },
 ];
 
 const routeStops = [
-  { label: "上海", stay: "Day 1-4", x: 120, y: 170, color: "#a93f25" },
-  { label: "杭州", stay: "Day 5-6", x: 340, y: 230, color: "#0f5963" },
-  { label: "蘇州", stay: "Day 7", x: 560, y: 92, color: "#456543" },
-  { label: "上海", stay: "Day 8-10", x: 710, y: 170, color: "#a93f25" },
+  { label: "上海", note: "スタート", stay: "Day 1-4", x: 180, y: 92, color: "#a93f25" },
+  { label: "杭州", note: "高鉄で南へ", stay: "Day 5-6", x: 620, y: 92, color: "#0f5963" },
+  { label: "蘇州", note: "江南を北上", stay: "Day 7", x: 620, y: 228, color: "#456543" },
+  { label: "上海", note: "戻って深掘り", stay: "Day 8-10", x: 180, y: 228, color: "#a93f25" },
 ];
 
 const routeLegs = [
-  { from: 0, to: 1, order: 1, time: "高鉄 約1h", title: "上海 → 杭州" },
-  { from: 1, to: 2, order: 2, time: "高鉄 約1.5-2h", title: "杭州 → 蘇州" },
-  { from: 2, to: 3, order: 3, time: "高鉄 約30-40m", title: "蘇州 → 上海" },
+  { from: 0, to: 1, order: 1, time: "高鉄 約1時間", title: "上海 → 杭州" },
+  { from: 1, to: 2, order: 2, time: "高鉄 約1.5-2時間", title: "杭州 → 蘇州" },
+  { from: 2, to: 3, order: 3, time: "高鉄 約30-40分", title: "蘇州 → 上海" },
 ];
 
 const schedule = [
@@ -127,18 +127,57 @@ const notes = [
   },
 ];
 
-const impressions = [
+const travelTools = [
   {
-    title: "上海で残るもの",
-    text: "世界都市として競争している圧力、速度、視界の広さ。初回のインパクトはここが最大です。",
+    title: "高鉄の予約と乗り方",
+    text: "予約、本人確認、駅での動線が分かれば、上海-杭州-蘇州はかなり扱いやすいです。",
+    icon: "move",
+    links: [
+      {
+        title: "公式: 12306 English",
+        note: "中国鉄路の英語版。検索、予約、払い戻しの入口。",
+        href: "https://www.12306.cn/en/",
+      },
+      {
+        title: "解説: 12306を外国人が使う流れ",
+        note: "画面の流れとつまずきやすい点をまとめた実務寄りガイド。",
+        href: "https://chinafortravelers.com/guides/12306-english/",
+      },
+    ],
   },
   {
-    title: "杭州で残るもの",
-    text: "豊かな上位都市の落ち着き。観光地だけではない、生活と新しさの両立が見えます。",
+    title: "Alipay・Weixin Pay の準備",
+    text: "現地での認知負荷を下げるなら、出発前に国際カード連携まで終えておくのが最優先です。",
+    icon: "wallet",
+    links: [
+      {
+        title: "公式系: 北京市のモバイル決済案内",
+        note: "外国人向けに、登録とカード連携の基本を整理した案内。",
+        href: "https://english.beijing.gov.cn/specials/aguidetoworkingandlivinginchinaasbusinessexpatriates2024/dailylifeservices/202404/t20240424_3635122.html",
+      },
+      {
+        title: "補足: 対応カードと使い方",
+        note: "Weixin Pay と Alipay の対応ブランドや導線を確認できます。",
+        href: "https://english.beijing.gov.cn/livinginbeijing/finance/mobilepaymentlist/202307/t20230722_3205013.html",
+      },
+    ],
   },
   {
-    title: "蘇州で残るもの",
-    text: "歴史のある土地が、今も経済圏として強いまま残っている感覚。古いだけで終わりません。",
+    title: "eSIM と接続の確認",
+    text: "通信が入れば、配車、翻訳、予約確認まで全部立て直せます。日本で端末対応と導入手順を確認しておくと安全です。",
+    icon: "wifi",
+    links: [
+      {
+        title: "端末準備: Apple の eSIM案内",
+        note: "iPhone で eSIM を使えるか、事前確認するときの入口。",
+        href: "https://support.apple.com/en-gb/118669",
+      },
+      {
+        title: "旅行向け解説: 中国で eSIM を使う前提整理",
+        note: "現地での使い方や注意点をざっと掴むための実用記事。",
+        href: "https://www.trip.com/guide/info/does-esim-work-in-china.html",
+      },
+    ],
   },
 ];
 
@@ -263,6 +302,8 @@ function iconSvg(name) {
     pace: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v7l4 2"/><circle cx="12" cy="12" r="8"/></svg>`,
     plan: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16H6z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>`,
     phone: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>`,
+    wallet: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6.5A2.5 2.5 0 0 1 4 16.5z"/><path d="M4 8h14"/><path d="M15 13h5"/><circle cx="15.5" cy="13" r="1"/></svg>`,
+    wifi: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5a14 14 0 0 1 17 0"/><path d="M6.5 13a9 9 0 0 1 11 0"/><path d="M9.5 16.5a4.5 4.5 0 0 1 5 0"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg>`,
     spark: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>`,
   };
   return icons[name] || icons.plan;
@@ -299,10 +340,10 @@ function renderSummary() {
   );
 }
 
-function renderReasons() {
+function renderOverviewFocus() {
   renderCollection(
-    "reasons",
-    reasons.map((item) => ({ ...item, icon: "logic" })),
+    "overview-focus",
+    overviewFocus.map((item) => ({ ...item, icon: "logic" })),
     (item) => `
       <div class="stack-card-head">
         <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
@@ -311,6 +352,35 @@ function renderReasons() {
       <p>${item.text}</p>
     `,
     "stack-card"
+  );
+}
+
+function renderTravelTools() {
+  renderCollection(
+    "travel-tools",
+    travelTools,
+    (item) => `
+      <div class="reference-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+        <div>
+          <strong>${item.title}</strong>
+        </div>
+      </div>
+      <p>${item.text}</p>
+      <div class="reference-links">
+        ${item.links
+          .map(
+            (link) => `
+              <a href="${link.href}" target="_blank" rel="noreferrer noopener">
+                <strong>${link.title}</strong>
+                <span>${link.note}</span>
+              </a>
+            `
+          )
+          .join("")}
+      </div>
+    `,
+    "tool-card"
   );
 }
 
@@ -423,25 +493,26 @@ function renderNotes() {
   );
 }
 
-function renderImpressions() {
-  renderCollection(
-    "impressions",
-    impressions.map((item) => ({ ...item, icon: "spark" })),
-    (item) => `
-      <div class="stack-card-head">
-        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
-        <strong>${item.title}</strong>
-      </div>
-      <p>${item.text}</p>
-    `,
-    "stack-card"
-  );
-}
-
 function renderDiagram() {
   const container = document.getElementById("route-diagram");
+  container.textContent = "";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", "0 0 820 320");
+
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+  marker.setAttribute("id", "routeArrow");
+  marker.setAttribute("markerWidth", "10");
+  marker.setAttribute("markerHeight", "10");
+  marker.setAttribute("refX", "8");
+  marker.setAttribute("refY", "5");
+  marker.setAttribute("orient", "auto");
+  const arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  arrowPath.setAttribute("d", "M0,0 L10,5 L0,10 z");
+  arrowPath.setAttribute("fill", "#2f2924");
+  marker.appendChild(arrowPath);
+  defs.appendChild(marker);
+  svg.appendChild(defs);
 
   const backdrop = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   backdrop.setAttribute("x", "10");
@@ -452,6 +523,25 @@ function renderDiagram() {
   backdrop.setAttribute("fill", "#f8f2e9");
   backdrop.setAttribute("stroke", "rgba(23,20,17,0.08)");
   svg.appendChild(backdrop);
+
+  const badge = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  badge.setAttribute("x", "34");
+  badge.setAttribute("y", "34");
+  badge.setAttribute("width", "148");
+  badge.setAttribute("height", "30");
+  badge.setAttribute("rx", "15");
+  badge.setAttribute("fill", "rgba(15,89,99,0.08)");
+  svg.appendChild(badge);
+
+  const badgeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  badgeText.setAttribute("x", "108");
+  badgeText.setAttribute("y", "54");
+  badgeText.setAttribute("text-anchor", "middle");
+  badgeText.setAttribute("font-size", "13");
+  badgeText.setAttribute("font-weight", "700");
+  badgeText.setAttribute("fill", "#0f5963");
+  badgeText.textContent = "上海起点の周回ルート";
+  svg.appendChild(badgeText);
 
   routeLegs.forEach((leg) => {
     const from = routeStops[leg.from];
@@ -465,6 +555,7 @@ function renderDiagram() {
     line.setAttribute("stroke", "#2f2924");
     line.setAttribute("stroke-width", "3");
     line.setAttribute("stroke-linecap", "round");
+    line.setAttribute("marker-end", "url(#routeArrow)");
     svg.appendChild(line);
 
     const midX = (from.x + to.x) / 2;
@@ -524,18 +615,28 @@ function renderDiagram() {
     stay.setAttribute("fill", "#625a52");
     stay.textContent = stop.stay;
     svg.appendChild(stay);
+
+    const note = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    note.setAttribute("x", stop.x);
+    note.setAttribute("y", stop.y - 46);
+    note.setAttribute("text-anchor", "middle");
+    note.setAttribute("font-size", "12");
+    note.setAttribute("font-weight", "700");
+    note.setAttribute("fill", stop.color);
+    note.textContent = stop.note;
+    svg.appendChild(note);
   });
 
   container.appendChild(svg);
 }
 
 renderSummary();
-renderReasons();
+renderOverviewFocus();
 renderDiagram();
 renderLegend();
+renderTravelTools();
 renderHighlights();
 renderScenes();
 renderReferences();
 renderSchedule();
 renderNotes();
-renderImpressions();

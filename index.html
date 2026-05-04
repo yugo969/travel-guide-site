@@ -82,38 +82,36 @@
     <main class="layout">
       <section id="overview" class="section-shell overview-section">
         <div class="section-header">
-          <p class="section-kicker">旅程の考え方</p>
-          <h2>なぜこの構成か</h2>
+          <p class="section-kicker">旅の軸</p>
+          <h2>この10日で何が分かるか</h2>
           <p>
-            旅程は「広く回る」より「大都市圏を深く理解する」設計です。情報量は増やしつつ、移動は減らしています。
+            中国を広くつまむ旅ではなく、上海圏をしっかり回して、発展、上位都市の余裕、江南の厚みを一つの流れで掴む構成です。
           </p>
         </div>
         <div id="summary" class="metric-grid"></div>
-        <div class="two-column">
-          <div class="panel">
-            <h3>設計思想</h3>
-            <div id="reasons" class="stack-list"></div>
-          </div>
-          <div class="panel emphasis">
-            <span class="mini-label">負荷設計</span>
-            <h3>攻めすぎず、退屈にもならない</h3>
-            <p>
-              上海に前後で戻る形にしているので、途中で疲れても修正しやすいです。高鉄も短距離だけなので、
-              「移動だけで1日が終わる」日をほぼ作りません。
-            </p>
-          </div>
+        <div class="panel overview-panel">
+          <span class="mini-label">この旅で見えること</span>
+          <div id="overview-focus" class="focus-grid"></div>
         </div>
       </section>
 
       <section id="route" class="section-shell route-section">
         <div class="section-header">
-          <p class="section-kicker">都市間移動</p>
-          <h2>ルート図</h2>
-          <p>都市間移動の順番と、所要時間の感覚がひと目で分かるようにしています。</p>
+          <p class="section-kicker">移動の理解</p>
+          <h2>どう回るかと、何を準備すればいいか</h2>
+          <p>ルート図は眺めるためではなく、移動の順番、高鉄の使い方、決済と通信の準備まで同じ場所で分かるようにまとめています。</p>
         </div>
         <div class="panel diagram-panel">
           <div id="route-diagram" class="diagram-shell"></div>
           <div id="route-legend" class="legend-grid"></div>
+        </div>
+        <div class="panel travel-tools-panel">
+          <span class="mini-label">移動の実務</span>
+          <h3>高鉄・決済・通信の入口</h3>
+          <p class="panel-intro">
+            中国旅行で詰まりやすいのは、乗り方そのものより、予約、改札、支払い、通信の準備です。分からなければここから見れば足ります。
+          </p>
+          <div id="travel-tools" class="travel-tools-grid"></div>
         </div>
       </section>
 
@@ -164,19 +162,12 @@
 
       <section id="notes" class="section-shell notes-section">
         <div class="section-header">
-          <p class="section-kicker">準備と感覚</p>
-          <h2>実務メモ</h2>
-          <p>現地で詰まりやすいポイントと、この旅で得られる印象を最後にまとめています。</p>
+          <p class="section-kicker">最後の準備</p>
+          <h2>出発前に押さえること</h2>
+          <p>細かい理屈より、最初に詰まりやすい判断だけを短く残しています。</p>
         </div>
-        <div class="two-column">
-          <div class="panel">
-            <h3>現実的な準備</h3>
-            <div id="notes-list" class="stack-list"></div>
-          </div>
-          <div class="panel">
-            <h3>この旅で残る感覚</h3>
-            <div id="impressions" class="stack-list"></div>
-          </div>
+        <div class="panel notes-panel">
+          <div id="notes-list" class="stack-list"></div>
         </div>
       </section>
     </main>
