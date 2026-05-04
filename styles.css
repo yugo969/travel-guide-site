@@ -206,6 +206,26 @@ h1 {
   margin-top: 32px;
 }
 
+.overview-section {
+  --section-accent: var(--accent);
+}
+
+.route-section {
+  --section-accent: var(--teal);
+}
+
+.references-section {
+  --section-accent: var(--gold);
+}
+
+.schedule-section {
+  --section-accent: var(--accent-deep);
+}
+
+.notes-section {
+  --section-accent: var(--olive);
+}
+
 .section-header {
   margin-bottom: 18px;
   padding: 0 2px;
@@ -214,6 +234,7 @@ h1 {
 .section-header h2 {
   margin-bottom: 10px;
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: var(--section-accent, var(--ink));
 }
 
 .section-header p {
@@ -379,10 +400,179 @@ h1 {
   font-size: 0.84rem;
 }
 
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.highlight-card {
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 32px var(--shadow);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.highlight-visual {
+  position: relative;
+  min-height: 340px;
+  background-size: cover;
+  background-position: center;
+}
+
+.highlight-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(12, 10, 9, 0.06), rgba(12, 10, 9, 0.76)),
+    linear-gradient(160deg, rgba(169, 63, 37, 0.22), rgba(15, 89, 99, 0.14));
+}
+
+.highlight-copy {
+  position: absolute;
+  inset: auto 18px 18px 18px;
+  z-index: 1;
+  color: #fff8f1;
+}
+
+.highlight-copy h3 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+}
+
+.highlight-copy p {
+  margin: 0 0 14px;
+  color: rgba(255, 248, 241, 0.92);
+  line-height: 1.6;
+}
+
+.highlight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.highlight-tags span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 248, 241, 0.16);
+  border: 1px solid rgba(255, 248, 241, 0.18);
+  font-size: 0.84rem;
+}
+
+.reference-card {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+  box-shadow: 0 14px 32px var(--shadow);
+}
+
+.reference-visual {
+  position: relative;
+  min-height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+
+.reference-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(12, 10, 9, 0.08), rgba(12, 10, 9, 0.7)),
+    linear-gradient(135deg, rgba(169, 63, 37, 0.28), rgba(15, 89, 99, 0.16));
+}
+
+.reference-visual-copy {
+  position: absolute;
+  inset: auto 18px 18px 18px;
+  z-index: 1;
+  color: #fff8f1;
+}
+
+.reference-visual-copy .mini-label {
+  color: rgba(255, 248, 241, 0.88);
+}
+
+.reference-visual-copy h3 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+.reference-visual-copy p {
+  margin: 0;
+  color: rgba(255, 248, 241, 0.9);
+}
+
+.reference-body {
+  padding: 18px;
+}
+
+.reference-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.reference-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.reference-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.reference-links {
+  display: grid;
+  gap: 10px;
+}
+
+.reference-links a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 16px;
+  background: rgba(23, 20, 17, 0.04);
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid rgba(23, 20, 17, 0.06);
+}
+
+.reference-links a:hover {
+  background: rgba(23, 20, 17, 0.08);
+}
+
+.reference-links strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.reference-links span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
 @media (max-width: 980px) {
   .hero,
   .two-column,
   .metric-grid,
+  .highlight-grid,
+  .reference-grid,
   .legend-grid,
   .schedule-grid {
     grid-template-columns: 1fr;
@@ -394,6 +584,15 @@ h1 {
   .layout,
   .topnav {
     width: min(100% - 20px, 1120px);
+  }
+
+  .hero,
+  .two-column,
+  .metric-grid,
+  .reference-grid,
+  .legend-grid,
+  .schedule-grid {
+    grid-template-columns: 1fr;
   }
 
   .topnav {

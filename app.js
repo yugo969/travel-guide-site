@@ -142,6 +142,102 @@ const impressions = [
   },
 ];
 
+const references = [
+  {
+    city: "上海",
+    icon: "skyline",
+    image: "./images/shanghai.jpg",
+    label: "超高層と旧租界",
+    text: "超高層の圧と、法租界の歩きやすさが同居する都市。まずは広さ、その次に歩いたときのテンポを見ると理解しやすいです。",
+    links: [
+      {
+        title: "公式ガイド: Meet in Shanghai",
+        note: "観光、街歩き、展示、交通の入口として使いやすい。",
+        href: "https://www.meet-in-shanghai.net/en/index.html",
+      },
+      {
+        title: "体験記事: French Concession の歩き方",
+        note: "樹木の多い旧租界を、半日でどう歩くかの雰囲気がつかみやすい。",
+        href: "https://chinawondersguide.com/shanghai-french-concession-walking/",
+      },
+      {
+        title: "動画導線: 上海4K歩行ツアーを探す",
+        note: "外灘、浦東、法租界などの検索起点。街のテンポ確認向け。",
+        href: "https://www.youtube.com/results?search_query=Shanghai+4K+walking+tour+Bund+Pudong+French+Concession",
+      },
+    ],
+  },
+  {
+    city: "杭州",
+    icon: "spark",
+    image: "./images/hangzhou.jpg",
+    label: "水辺と余白",
+    text: "西湖だけだと像がぼやけやすいので、水辺の静けさと実際の散策導線を一緒に見ると雰囲気が入りやすいです。",
+    links: [
+      {
+        title: "現地情報: AI Hangzhou の紹介",
+        note: "外国人向けの現地サービス導線が分かる。今の受け入れ方を知るのに便利。",
+        href: "https://en.hangzhou.com.cn/News/content/2024-12/09/content_8823620.html",
+      },
+      {
+        title: "体験記事: West Lake Walking Route",
+        note: "西湖をどう歩くと疲れにくいか、景色の切れ目と休み方が見える。",
+        href: "https://ruqintravel.com/china-destination-guides/west-lake/",
+      },
+      {
+        title: "動画導線: 杭州・西湖の歩行動画を探す",
+        note: "水辺の静けさや人の密度を、文章より早くつかめます。",
+        href: "https://www.youtube.com/results?search_query=Hangzhou+West+Lake+walking+tour+4k",
+      },
+    ],
+  },
+  {
+    city: "蘇州",
+    icon: "layers",
+    image: "./images/suzhou.jpg",
+    label: "庭園と旧市街",
+    text: "庭園都市として理解されがちですが、旧市街の水辺や夜の気配まで見ると、静けさだけではない厚みが分かります。",
+    links: [
+      {
+        title: "公式入口: Explore Suzhou",
+        note: "都市の見どころと観光の入口をざっと掴むのに向いています。",
+        href: "https://english.suzhou.gov.cn/szsenglish/tssz/ExploreSuzhou.shtml",
+      },
+      {
+        title: "体験記事: Suzhou Old Town",
+        note: "旧市街の構造と、何を見ると蘇州らしさが分かるかを把握しやすい。",
+        href: "https://www.travelchinaguide.com/cityguides/suzhou-old-town.htm",
+      },
+      {
+        title: "動画導線: 蘇州旧市街・庭園の歩行動画を探す",
+        note: "運河、夜景、庭園の空気感を事前にイメージしやすい。",
+        href: "https://www.youtube.com/results?search_query=Suzhou+old+town+garden+walking+tour+4k",
+      },
+    ],
+  },
+];
+
+const highlights = [
+  {
+    city: "上海",
+    image: "./images/shanghai.jpg",
+    text: "まずは中国の速度と規模を身体で理解する都市。高層群、金融街、租界の歩きやすさが全部入っています。",
+    tags: ["外灘と浦東", "法租界", "巨大商業圏"],
+  },
+  {
+    city: "杭州",
+    image: "./images/hangzhou.jpg",
+    text: "休息感があるのに、都市としての地力も高い場所。西湖の景色だけで終わらせないと印象が深くなります。",
+    tags: ["西湖", "茶畑", "上位都市の落ち着き"],
+  },
+  {
+    city: "蘇州",
+    image: "./images/suzhou.jpg",
+    text: "古い庭園都市ではなく、歴史と豊かさが今も繋がっている場所として見ると、旅の厚みが出ます。",
+    tags: ["庭園", "旧市街", "江南の厚み"],
+  },
+];
+
 function iconSvg(name) {
   const icons = {
     move: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M15 7l5 5-5 5"/><circle cx="6.5" cy="12" r="2.5"/></svg>`,
@@ -228,6 +324,61 @@ function renderSchedule() {
       <p>${item.text}</p>
     `,
     "schedule-card"
+  );
+}
+
+function renderReferences() {
+  renderCollection(
+    "reference-grid",
+    references,
+    (item) => `
+      <div class="reference-visual" style="background-image:url('${item.image}')">
+        <div class="reference-visual-copy">
+          <span class="mini-label">${item.label}</span>
+          <h3>${item.city}</h3>
+          <p>${item.text}</p>
+        </div>
+      </div>
+      <div class="reference-body">
+        <div class="reference-card-head">
+          <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+          <strong>${item.city}を理解するための入口</strong>
+        </div>
+        <div class="reference-links">
+          ${item.links
+            .map(
+              (link) => `
+                <a href="${link.href}" target="_blank" rel="noreferrer noopener">
+                  <strong>${link.title}</strong>
+                  <span>${link.note}</span>
+                </a>
+              `
+            )
+            .join("")}
+        </div>
+      </div>
+    `,
+    "reference-card"
+  );
+}
+
+function renderHighlights() {
+  renderCollection(
+    "highlight-grid",
+    highlights,
+    (item) => `
+      <div class="highlight-visual" style="background-image:url('${item.image}')">
+        <div class="highlight-copy">
+          <span class="mini-label">この都市で見るべきもの</span>
+          <h3>${item.city}</h3>
+          <p>${item.text}</p>
+          <div class="highlight-tags">
+            ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
+          </div>
+        </div>
+      </div>
+    `,
+    "highlight-card"
   );
 }
 
@@ -356,6 +507,8 @@ renderSummary();
 renderReasons();
 renderDiagram();
 renderLegend();
+renderHighlights();
+renderReferences();
 renderSchedule();
 renderNotes();
 renderImpressions();
