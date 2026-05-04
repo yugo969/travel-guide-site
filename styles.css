@@ -401,7 +401,7 @@ h1 {
 
 .travel-tools-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -418,6 +418,15 @@ h1 {
   line-height: 1.65;
 }
 
+.tool-steps {
+  margin: 0 0 12px;
+  padding-left: 18px;
+}
+
+.tool-steps li + li {
+  margin-top: 6px;
+}
+
 .legend-card {
   padding: 16px;
 }
@@ -429,12 +438,13 @@ h1 {
 
 .schedule-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 14px;
 }
 
 .schedule-card {
   padding: 18px;
+  border-left: 5px solid rgba(169, 63, 37, 0.5);
 }
 
 .schedule-card h3 {
@@ -446,7 +456,8 @@ h1 {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 .schedule-meta span {

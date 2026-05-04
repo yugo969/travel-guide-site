@@ -129,53 +129,80 @@ const notes = [
 
 const travelTools = [
   {
-    title: "高鉄の予約と乗り方",
-    text: "予約、本人確認、駅での動線が分かれば、上海-杭州-蘇州はかなり扱いやすいです。",
+    title: "高鉄の予約と駅の流れ",
+    text: "上海-杭州-蘇州は高鉄に慣れればかなり楽です。まずは予約方法より、駅で何が起こるかを先に掴むほうが迷いません。",
     icon: "move",
+    steps: [
+      "予約は Trip.com か 12306 のどちらかに絞る",
+      "駅では 手荷物検査 → 改札 → ホーム の順に進む",
+      "初回は 出発の45〜60分前 に着く前提で考える",
+    ],
     links: [
       {
-        title: "公式: 12306 English",
-        note: "中国鉄路の英語版。検索、予約、払い戻しの入口。",
+        title: "まず読む: 日本語で高鉄の乗り方",
+        note: "日本人向けに、予約から駅での流れまでを一通り追える記事。",
+        href: "https://media.xsight.co.jp/article/1402/",
+      },
+      {
+        title: "予約する: 12306公式",
+        note: "公式で直接予約したいときの入口。英語表示あり。",
         href: "https://www.12306.cn/en/",
       },
-      {
-        title: "解説: 12306を外国人が使う流れ",
-        note: "画面の流れとつまずきやすい点をまとめた実務寄りガイド。",
-        href: "https://chinafortravelers.com/guides/12306-english/",
-      },
     ],
   },
   {
-    title: "Alipay・Weixin Pay の準備",
-    text: "現地での認知負荷を下げるなら、出発前に国際カード連携まで終えておくのが最優先です。",
+    title: "Alipay を先に通す",
+    text: "短期旅行なら、まずは Alipay を先に使える状態にするのが分かりやすいです。地下鉄や日常決済まで広く使いやすい側です。",
     icon: "wallet",
+    steps: [
+      "アプリ登録を済ませる",
+      "国際カードを追加して本人確認まで終える",
+      "現地では スキャン と 支払いコード表示 の両方を使う",
+    ],
     links: [
       {
-        title: "公式系: 北京市のモバイル決済案内",
-        note: "外国人向けに、登録とカード連携の基本を整理した案内。",
-        href: "https://english.beijing.gov.cn/specials/aguidetoworkingandlivinginchinaasbusinessexpatriates2024/dailylifeservices/202404/t20240424_3635122.html",
-      },
-      {
-        title: "補足: 対応カードと使い方",
-        note: "Weixin Pay と Alipay の対応ブランドや導線を確認できます。",
-        href: "https://english.beijing.gov.cn/livinginbeijing/finance/mobilepaymentlist/202307/t20230722_3205013.html",
+        title: "日本語案内: Alipay の始め方",
+        note: "上海市の日本語ページ。対応カード、始め方、手数料まで必要な範囲に絞られています。",
+        href: "https://japanese.shanghai.gov.cn/ja-FAQs-StudyinShanghai/20240329/4394828530e246839d8101f0121b1872.html",
       },
     ],
   },
   {
-    title: "eSIM と接続の確認",
-    text: "通信が入れば、配車、翻訳、予約確認まで全部立て直せます。日本で端末対応と導入手順を確認しておくと安全です。",
-    icon: "wifi",
+    title: "WeChat Pay は予備ではなく保険",
+    text: "Alipay だけでも動ける場面は多いですが、店やミニプログラム次第で WeChat Pay が効く場面があります。両方登録しておくと止まりにくいです。",
+    icon: "phone",
+    steps: [
+      "WeChat アカウントを先に作る",
+      "カード登録と支払いコード表示まで確認する",
+      "送金機能ではなく 旅行中の支払い用 と割り切る",
+    ],
     links: [
       {
-        title: "端末準備: Apple の eSIM案内",
-        note: "iPhone で eSIM を使えるか、事前確認するときの入口。",
-        href: "https://support.apple.com/en-gb/118669",
+        title: "日本語ガイド: WeChat / Alipay の使い方",
+        note: "日本人旅行者向けに、WeChat Pay と Alipay をまとめて確認できます。",
+        href: "https://media.xsight.co.jp/article/1286",
+      },
+    ],
+  },
+  {
+    title: "eSIM は対応確認だけ先に終える",
+    text: "通信が入れば、配車、翻訳、予約確認まで全部立て直せます。事前に自分の端末が eSIM 対応かを見るだけでも十分価値があります。",
+    icon: "wifi",
+    steps: [
+      "自分の iPhone が eSIM 対応か確認する",
+      "開通は出発前日か当日に合わせる",
+      "つながらない時の確認手順を1本だけ持っておく",
+    ],
+    links: [
+      {
+        title: "日本語公式: eSIM について",
+        note: "Apple の日本語サポート。対応確認と基本設定の入口として十分です。",
+        href: "https://support.apple.com/ja-jp/119606",
       },
       {
-        title: "旅行向け解説: 中国で eSIM を使う前提整理",
-        note: "現地での使い方や注意点をざっと掴むための実用記事。",
-        href: "https://www.trip.com/guide/info/does-esim-work-in-china.html",
+        title: "困った時: eSIM を設定できない場合",
+        note: "つながらない時の確認項目だけを見たい場合はこちら。",
+        href: "https://support.apple.com/ja-jp/102478",
       },
     ],
   },
@@ -367,6 +394,9 @@ function renderTravelTools() {
         </div>
       </div>
       <p>${item.text}</p>
+      <ul class="tool-steps">
+        ${item.steps.map((step) => `<li>${step}</li>`).join("")}
+      </ul>
       <div class="reference-links">
         ${item.links
           .map(
@@ -400,11 +430,13 @@ function renderSchedule() {
     (item) => `
       <div class="schedule-card-head">
         <span class="icon-chip" aria-hidden="true">${iconSvg("plan")}</span>
-        <h3>${item.day}</h3>
-      </div>
-      <div class="schedule-meta">
-        <span>${item.city}</span>
-        <span>${item.pace}</span>
+        <div>
+          <h3>${item.day}</h3>
+          <div class="schedule-meta">
+            <span>${item.city}</span>
+            <span>${item.pace}</span>
+          </div>
+        </div>
       </div>
       <p>${item.text}</p>
     `,
