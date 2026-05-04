@@ -1,39 +1,291 @@
+const summary = [
+  {
+    label: "移動負荷",
+    title: "飛行機は日本-上海の往復だけ",
+    text: "中国国内を高鉄中心にして、長時間フライトを増やさない構成にしています。",
+  },
+  {
+    label: "都市体験",
+    title: "都市の圧は上海で最も濃く取る",
+    text: "高層群、地下鉄、商業、夜景、金融街まで、中国の発展感を一番効率よく体感できます。",
+  },
+  {
+    label: "余白",
+    title: "後半で立て直せる",
+    text: "上海に戻る日を作ることで、途中で疲れても旅程を壊さず調整できます。",
+  },
+  {
+    label: "変化",
+    title: "杭州と蘇州で質感を変える",
+    text: "現代都市、湖畔都市、江南の古都を一つの旅で比較でき、単調になりません。",
+  },
+];
+
+const reasons = [
+  {
+    title: "上海は初回の中国旅行として正解率が高い",
+    text: "短時間フライトで行けて、都市インフラ、決済、物流、巨大商業圏のスケールを一気に理解できます。",
+  },
+  {
+    title: "広げすぎると旅が移動に食われる",
+    text: "北京や深圳まで足すと面白い反面、ホテル移動と長距離移動が増え、体調面のブレに弱くなります。",
+  },
+  {
+    title: "江南圏だけでも中国の厚みは十分見える",
+    text: "上海、杭州、蘇州だけで、現代性、文化の厚み、富の蓄積、交通の成熟までしっかり拾えます。",
+  },
+];
+
 const routeStops = [
-  { name: "Shanghai", label: "上海", x: 110, y: 150, color: "#b5442a" },
-  { name: "Nanjing", label: "南京", x: 300, y: 95, color: "#c79a2b" },
-  { name: "Suzhou", label: "蘇州", x: 500, y: 95, color: "#1d5c63" },
-  { name: "Hangzhou", label: "杭州", x: 500, y: 220, color: "#3f7d4c" },
-  { name: "Shanghai Return", label: "上海", x: 690, y: 150, color: "#b5442a" },
+  { label: "上海", stay: "Day 1-4", x: 120, y: 170, color: "#a93f25" },
+  { label: "杭州", stay: "Day 5-6", x: 340, y: 230, color: "#0f5963" },
+  { label: "蘇州", stay: "Day 7", x: 560, y: 92, color: "#456543" },
+  { label: "上海", stay: "Day 8-10", x: 710, y: 170, color: "#a93f25" },
 ];
 
 const routeLegs = [
-  { from: 0, to: 1, order: 1, time: "1.5h" },
-  { from: 1, to: 2, order: 2, time: "1h" },
-  { from: 2, to: 3, order: 3, time: "1.5h" },
-  { from: 3, to: 4, order: 4, time: "1h" },
+  { from: 0, to: 1, order: 1, time: "高鉄 約1h", title: "上海 → 杭州" },
+  { from: 1, to: 2, order: 2, time: "高鉄 約1.5-2h", title: "杭州 → 蘇州" },
+  { from: 2, to: 3, order: 3, time: "高鉄 約30-40m", title: "蘇州 → 上海" },
 ];
 
 const schedule = [
-  { day: "Day 1-4", text: "上海滞在。街の規模感、地下鉄、金融街、夜景をつかむ。" },
-  { day: "Day 5-6", text: "杭州へ移動。西湖だけでなく、上位都市の空気感も見る。" },
-  { day: "Day 7", text: "蘇州へ。旧市街と都市圏の豊かさを短く体験する。" },
-  { day: "Day 8-10", text: "上海へ戻って予備日を確保。最終調整して帰国。" },
+  {
+    day: "Day 1",
+    city: "上海",
+    pace: "軽め",
+    text: "到着日。ホテル周辺、外灘、南京東路だけに絞って、中国の都市密度に身体を慣らす日。",
+  },
+  {
+    day: "Day 2",
+    city: "上海",
+    pace: "中",
+    text: "陸家嘴、浦東、美術館や大型商業施設。高層群とインフラの規模感を正面から取る日。",
+  },
+  {
+    day: "Day 3",
+    city: "上海",
+    pace: "中",
+    text: "静安、徐匯、西岸などを回して、金融街だけではない現代都市の厚みを見る日。",
+  },
+  {
+    day: "Day 4",
+    city: "上海",
+    pace: "調整",
+    text: "豫園、租界エリア、カフェや書店などで余白を作る日。疲れたら完全に軽くして良い日です。",
+  },
+  {
+    day: "Day 5",
+    city: "杭州",
+    pace: "移動込みで中",
+    text: "午前に高鉄で杭州へ。午後は西湖周辺を歩き、上海と違う上位都市の空気感をつかむ日。",
+  },
+  {
+    day: "Day 6",
+    city: "杭州",
+    pace: "中",
+    text: "茶畑、運河、現代建築、商業施設。観光地だけではない都市の地力を見る日。",
+  },
+  {
+    day: "Day 7",
+    city: "蘇州",
+    pace: "やや軽め",
+    text: "蘇州へ移動。庭園や旧市街に寄せつつ、江南圏全体の富の蓄積と静かな強さを感じる日。",
+  },
+  {
+    day: "Day 8",
+    city: "上海",
+    pace: "軽め",
+    text: "上海へ戻る。好きだった地区の再訪か、大型書店やモール中心でゆるく過ごす再調整日。",
+  },
+  {
+    day: "Day 9",
+    city: "上海",
+    pace: "自由",
+    text: "予備日。M50、浦東美術館、静安寺周辺など、体調と気分に合わせて最後の深掘りをする日。",
+  },
+  {
+    day: "Day 10",
+    city: "上海",
+    pace: "帰国日",
+    text: "空港アクセス優先。移動を読みやすくして、最後は余裕を持って日本へ戻る日。",
+  },
 ];
+
+const notes = [
+  {
+    title: "ホテルは交通の良さを優先",
+    text: "初回は静安、人民広場、外灘寄りなど、地下鉄導線が分かりやすい場所を優先すると楽です。",
+  },
+  {
+    title: "支払いと通信は出発前に整える",
+    text: "WeChat、Alipay、eSIM を先に準備すると、現地の認知負荷がかなり下がります。",
+  },
+  {
+    title: "昼便と予備日を使う",
+    text: "フライトは昼寄り、後半は余白あり。この組み方が体調面の保険になります。",
+  },
+];
+
+const impressions = [
+  {
+    title: "上海で残るもの",
+    text: "世界都市として競争している圧力、速度、視界の広さ。初回のインパクトはここが最大です。",
+  },
+  {
+    title: "杭州で残るもの",
+    text: "豊かな上位都市の落ち着き。観光地だけではない、生活と新しさの両立が見えます。",
+  },
+  {
+    title: "蘇州で残るもの",
+    text: "歴史のある土地が、今も経済圏として強いまま残っている感覚。古いだけで終わりません。",
+  },
+];
+
+function iconSvg(name) {
+  const icons = {
+    move: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M15 7l5 5-5 5"/><circle cx="6.5" cy="12" r="2.5"/></svg>`,
+    skyline: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21V9h4v12"/><path d="M13 21V4h5v17"/><path d="M8 12h1"/><path d="M15 8h1"/><path d="M15 12h1"/></svg>`,
+    rest: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c1.5-2.5 3.5-4 7-4s5.5 1.5 7 4"/><path d="M4 15h16"/><path d="M7 10V8"/><path d="M17 10V8"/></svg>`,
+    layers: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>`,
+    logic: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11l7-4"/><path d="M8.5 13l7 4"/></svg>`,
+    pace: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v7l4 2"/><circle cx="12" cy="12" r="8"/></svg>`,
+    plan: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16H6z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>`,
+    phone: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>`,
+    spark: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>`,
+  };
+  return icons[name] || icons.plan;
+}
+
+function renderCollection(targetId, items, renderer, className) {
+  const container = document.getElementById(targetId);
+  items.forEach((item) => {
+    const node = document.createElement("article");
+    node.className = className;
+    node.innerHTML = renderer(item);
+    container.appendChild(node);
+  });
+}
+
+function renderSummary() {
+  renderCollection(
+    "summary",
+    summary.map((item, idx) => ({
+      ...item,
+      icon: ["move", "skyline", "rest", "layers"][idx],
+    })),
+    (item) => `
+      <div class="metric-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+        <div>
+          <span class="mini-label">${item.label}</span>
+          <strong>${item.title}</strong>
+        </div>
+      </div>
+      <p>${item.text}</p>
+    `,
+    "metric-card"
+  );
+}
+
+function renderReasons() {
+  renderCollection(
+    "reasons",
+    reasons.map((item) => ({ ...item, icon: "logic" })),
+    (item) => `
+      <div class="stack-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+        <strong>${item.title}</strong>
+      </div>
+      <p>${item.text}</p>
+    `,
+    "stack-card"
+  );
+}
+
+function renderLegend() {
+  renderCollection(
+    "route-legend",
+    routeLegs,
+    (item) => `<strong>${item.title}</strong><p>${item.time}</p>`,
+    "legend-card"
+  );
+}
+
+function renderSchedule() {
+  renderCollection(
+    "schedule-grid",
+    schedule,
+    (item) => `
+      <div class="schedule-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg("plan")}</span>
+        <h3>${item.day}</h3>
+      </div>
+      <div class="schedule-meta">
+        <span>${item.city}</span>
+        <span>${item.pace}</span>
+      </div>
+      <p>${item.text}</p>
+    `,
+    "schedule-card"
+  );
+}
+
+function renderNotes() {
+  renderCollection(
+    "notes-list",
+    notes.map((item, idx) => ({ ...item, icon: ["move", "phone", "pace"][idx] })),
+    (item) => `
+      <div class="stack-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+        <strong>${item.title}</strong>
+      </div>
+      <p>${item.text}</p>
+    `,
+    "stack-card"
+  );
+}
+
+function renderImpressions() {
+  renderCollection(
+    "impressions",
+    impressions.map((item) => ({ ...item, icon: "spark" })),
+    (item) => `
+      <div class="stack-card-head">
+        <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
+        <strong>${item.title}</strong>
+      </div>
+      <p>${item.text}</p>
+    `,
+    "stack-card"
+  );
+}
 
 function renderDiagram() {
   const container = document.getElementById("route-diagram");
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 0 800 300");
+  svg.setAttribute("viewBox", "0 0 820 320");
+
+  const backdrop = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  backdrop.setAttribute("x", "10");
+  backdrop.setAttribute("y", "14");
+  backdrop.setAttribute("width", "800");
+  backdrop.setAttribute("height", "290");
+  backdrop.setAttribute("rx", "24");
+  backdrop.setAttribute("fill", "#f8f2e9");
+  backdrop.setAttribute("stroke", "rgba(23,20,17,0.08)");
+  svg.appendChild(backdrop);
 
   routeLegs.forEach((leg) => {
     const from = routeStops[leg.from];
     const to = routeStops[leg.to];
+
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
     line.setAttribute("x1", from.x);
     line.setAttribute("y1", from.y);
     line.setAttribute("x2", to.x);
     line.setAttribute("y2", to.y);
-    line.setAttribute("stroke", "#2b2722");
+    line.setAttribute("stroke", "#2f2924");
     line.setAttribute("stroke-width", "3");
     line.setAttribute("stroke-linecap", "round");
     svg.appendChild(line);
@@ -41,65 +293,69 @@ function renderDiagram() {
     const midX = (from.x + to.x) / 2;
     const midY = (from.y + to.y) / 2;
 
-    const badge = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    badge.setAttribute("cx", midX);
-    badge.setAttribute("cy", midY - 16);
-    badge.setAttribute("r", "16");
-    badge.setAttribute("fill", "#fdf9f2");
-    badge.setAttribute("stroke", "#2b2722");
-    badge.setAttribute("stroke-width", "2");
-    svg.appendChild(badge);
+    const orderBadge = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    orderBadge.setAttribute("cx", midX);
+    orderBadge.setAttribute("cy", midY - 18);
+    orderBadge.setAttribute("r", "16");
+    orderBadge.setAttribute("fill", "#ffffff");
+    orderBadge.setAttribute("stroke", "#2f2924");
+    orderBadge.setAttribute("stroke-width", "2");
+    svg.appendChild(orderBadge);
 
-    const order = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    order.setAttribute("x", midX);
-    order.setAttribute("y", midY - 11);
-    order.setAttribute("text-anchor", "middle");
-    order.setAttribute("font-size", "14");
-    order.setAttribute("font-weight", "700");
-    order.textContent = String(leg.order);
-    svg.appendChild(order);
+    const orderText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    orderText.setAttribute("x", midX);
+    orderText.setAttribute("y", midY - 12);
+    orderText.setAttribute("text-anchor", "middle");
+    orderText.setAttribute("font-size", "14");
+    orderText.setAttribute("font-weight", "700");
+    orderText.textContent = String(leg.order);
+    svg.appendChild(orderText);
 
-    const time = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    time.setAttribute("x", midX);
-    time.setAttribute("y", midY + 12);
-    time.setAttribute("text-anchor", "middle");
-    time.setAttribute("font-size", "13");
-    time.setAttribute("fill", "#6a6257");
-    time.textContent = leg.time;
-    svg.appendChild(time);
+    const timeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    timeText.setAttribute("x", midX);
+    timeText.setAttribute("y", midY + 15);
+    timeText.setAttribute("text-anchor", "middle");
+    timeText.setAttribute("font-size", "13");
+    timeText.setAttribute("fill", "#625a52");
+    timeText.textContent = leg.time;
+    svg.appendChild(timeText);
   });
 
   routeStops.forEach((stop) => {
-    const node = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    node.setAttribute("cx", stop.x);
-    node.setAttribute("cy", stop.y);
-    node.setAttribute("r", "28");
-    node.setAttribute("fill", stop.color);
-    svg.appendChild(node);
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", stop.x);
+    circle.setAttribute("cy", stop.y);
+    circle.setAttribute("r", "31");
+    circle.setAttribute("fill", stop.color);
+    svg.appendChild(circle);
 
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("x", stop.x);
-    label.setAttribute("y", stop.y + 5);
+    label.setAttribute("y", stop.y + 6);
     label.setAttribute("text-anchor", "middle");
-    label.setAttribute("font-size", "15");
+    label.setAttribute("font-size", "16");
     label.setAttribute("font-weight", "700");
     label.setAttribute("fill", "#ffffff");
     label.textContent = stop.label;
     svg.appendChild(label);
+
+    const stay = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    stay.setAttribute("x", stop.x);
+    stay.setAttribute("y", stop.y + 52);
+    stay.setAttribute("text-anchor", "middle");
+    stay.setAttribute("font-size", "12");
+    stay.setAttribute("fill", "#625a52");
+    stay.textContent = stop.stay;
+    svg.appendChild(stay);
   });
 
   container.appendChild(svg);
 }
 
-function renderSchedule() {
-  const container = document.getElementById("schedule");
-  schedule.forEach((item) => {
-    const card = document.createElement("article");
-    card.className = "schedule-card";
-    card.innerHTML = `<h3>${item.day}</h3><p>${item.text}</p>`;
-    container.appendChild(card);
-  });
-}
-
+renderSummary();
+renderReasons();
 renderDiagram();
+renderLegend();
 renderSchedule();
+renderNotes();
+renderImpressions();

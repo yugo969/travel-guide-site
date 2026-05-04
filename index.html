@@ -3,54 +3,138 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Guide Starter</title>
+    <title>中国10日プラン | 上海軸の都市体感ルート</title>
+    <meta
+      name="description"
+      content="上海を軸に、中国の規模感と発展を短時間フライトで体感するための10日間プラン。"
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <nav class="topnav">
+      <a href="#overview">全体像</a>
+      <a href="#route">移動</a>
+      <a href="#schedule">日程</a>
+      <a href="#notes">準備</a>
+    </nav>
+
     <header class="hero">
-      <p class="eyebrow">Publishing Starter</p>
-      <h1>Travel Guide Site</h1>
-      <p class="lede">
-        単発の旅行しおりでも、複数都市をまたぐ旅程でも、そのまま公開できる静的サイトの雛形。
-      </p>
-    </header>
+      <div class="hero-copy">
+        <div class="hero-title-row">
+          <div class="hero-mark" aria-hidden="true">
+            <svg viewBox="0 0 96 96" role="presentation">
+              <defs>
+                <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#c98d2b" />
+                  <stop offset="100%" stop-color="#a93f25" />
+                </linearGradient>
+              </defs>
+              <rect x="6" y="6" width="84" height="84" rx="28" fill="url(#heroGrad)" />
+              <circle cx="28" cy="32" r="10" fill="#f9f2e8" />
+              <circle cx="66" cy="62" r="10" fill="#f9f2e8" />
+              <path d="M36 38L58 56" stroke="#f9f2e8" stroke-width="6" stroke-linecap="round" />
+              <path d="M58 56L70 44" stroke="#f9f2e8" stroke-width="6" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div>
+            <p class="eyebrow">おすすめ案</p>
+            <h1>上海を軸に中国の規模感をつかむ10日間</h1>
+            <p class="lede">
+              飛行機の負担はできるだけ抑えつつ、上海の都市圧、杭州の上位都市感、蘇州の厚みまで体で理解する。
+              初回の中国旅行として、一番失敗しにくい構成です。
+            </p>
+          </div>
+        </div>
+        <div class="hero-badges">
+          <span>東京-上海の短距離往復</span>
+          <span>上海を長めに確保</span>
+          <span>高鉄は短距離だけ</span>
+          <span>予備日あり</span>
+        </div>
+      </div>
+
+        <aside class="hero-card">
+          <span class="mini-label">向いている人</span>
+          <h2>あなた向けの軸</h2>
+          <ul>
+            <li>中国の発展と都市の密度を感じたい</li>
+            <li>でも長距離フライトや移動過多は避けたい</li>
+            <li>自律神経の波を考えて、立て直せる旅程にしたい</li>
+          </ul>
+          <div class="hero-mini-route" aria-hidden="true">
+            <span>上海</span>
+            <i></i>
+            <span>杭州</span>
+            <i></i>
+            <span>蘇州</span>
+          </div>
+        </aside>
+      </header>
 
     <main class="layout">
-      <section class="panel">
-        <div class="section-head">
-          <h2>Trip Summary</h2>
-          <p>あとから旅程データだけ差し替えれば、そのまま別の旅行にも流用できます。</p>
+      <section id="overview" class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">旅程の考え方</p>
+          <h2>なぜこの構成か</h2>
+          <p>
+            旅程は「広く回る」より「大都市圏を深く理解する」設計です。情報量は増やしつつ、移動は減らしています。
+          </p>
         </div>
-        <div class="summary-grid">
-          <article>
-            <span class="label">Theme</span>
-            <strong>Urban scale, transit, and atmosphere</strong>
-          </article>
-          <article>
-            <span class="label">Format</span>
-            <strong>Static HTML/CSS/JS</strong>
-          </article>
-          <article>
-            <span class="label">Deploy</span>
-            <strong>GitHub Pages / Netlify</strong>
-          </article>
+        <div id="summary" class="metric-grid"></div>
+        <div class="two-column">
+          <div class="panel">
+            <h3>設計思想</h3>
+            <div id="reasons" class="stack-list"></div>
+          </div>
+          <div class="panel emphasis">
+            <span class="mini-label">負荷設計</span>
+            <h3>攻めすぎず、退屈にもならない</h3>
+            <p>
+              上海に前後で戻る形にしているので、途中で疲れても修正しやすいです。高鉄も短距離だけなので、
+              「移動だけで1日が終わる」日をほぼ作りません。
+            </p>
+          </div>
         </div>
       </section>
 
-      <section class="panel">
-        <div class="section-head">
-          <h2>Route Diagram</h2>
-          <p>都市間移動の順番と所要時間を図として表示します。</p>
+      <section id="route" class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">都市間移動</p>
+          <h2>ルート図</h2>
+          <p>都市間移動の順番と、所要時間の感覚がひと目で分かるようにしています。</p>
         </div>
-        <div id="route-diagram" class="diagram-shell"></div>
+        <div class="panel diagram-panel">
+          <div id="route-diagram" class="diagram-shell"></div>
+          <div id="route-legend" class="legend-grid"></div>
+        </div>
       </section>
 
-      <section class="panel">
-        <div class="section-head">
-          <h2>Schedule</h2>
-          <p>日別の旅程をこの下に並べていきます。</p>
+      <section id="schedule" class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">日ごとの流れ</p>
+          <h2>10日間のスケジュール</h2>
+          <p>各日を「都市」「負荷」「その日で何を取りにいくか」で整理しています。</p>
         </div>
-        <div id="schedule" class="schedule-list"></div>
+        <div id="schedule-grid" class="schedule-grid"></div>
+      </section>
+
+      <section id="notes" class="section-shell">
+        <div class="section-header">
+          <p class="section-kicker">準備と感覚</p>
+          <h2>実務メモ</h2>
+          <p>現地で詰まりやすいポイントと、この旅で得られる印象を最後にまとめています。</p>
+        </div>
+        <div class="two-column">
+          <div class="panel">
+            <h3>現実的な準備</h3>
+            <div id="notes-list" class="stack-list"></div>
+          </div>
+          <div class="panel">
+            <h3>この旅で残る感覚</h3>
+            <div id="impressions" class="stack-list"></div>
+          </div>
+        </div>
       </section>
     </main>
 
