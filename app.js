@@ -129,20 +129,13 @@ const notes = [
 
 const weatherNotes = [
   {
-    title: "2026年5月5日時点の上海",
-    text: "上海の予報は晴れベースで 16-26℃。寒さ対策より、昼の日差しと朝晩の気温差に合わせた薄手の羽織りが重要です。",
+    title: "5月上旬の服装感",
+    text: "日中は軽めでも動けますが、朝晩と屋内冷房で冷えることがあります。半袖だけで押し切るより、薄手の長袖か羽織りを1枚持つ方が安全です。",
     icon: "pace",
-    links: [
-      {
-        title: "上海の最新予報",
-        note: "5月5日の予報。16-26℃、降水はほぼなし、UVは高め。",
-        href: "https://weather2weeks.com/en/w/shanghai%2Cchina/3day",
-      },
-    ],
   },
   {
-    title: "杭州・蘇州の5月上旬",
-    text: "杭州の5月平均は最高26℃前後・最低17℃前後、蘇州も最高25℃前後・最低18℃前後。4月より雨が増えるので、折りたたみ傘は持っていた方が安全です。",
+    title: "杭州・蘇州は雨の保険を持つ",
+    text: "5月は雨が増える時期なので、折りたたみ傘や薄手の防水アウターがあると行動が止まりにくいです。歩き回る旅程なので、靴も濡れにくい方が楽です。",
     icon: "rest",
     links: [
       {
@@ -229,6 +222,12 @@ const helpNotes = [
       },
     ],
   },
+];
+
+const weatherCities = [
+  { name: "上海", latitude: 31.2304, longitude: 121.4737 },
+  { name: "杭州", latitude: 30.2741, longitude: 120.1551 },
+  { name: "蘇州", latitude: 31.2989, longitude: 120.5853 },
 ];
 
 const travelTools = [
@@ -440,6 +439,44 @@ function iconSvg(name) {
   return icons[name] || icons.plan;
 }
 
+function weatherCodeMeta(code, isDay = 1) {
+  const palette = {
+    clear: { label: isDay ? "快晴" : "晴れ", accent: "sunny" },
+    cloudy: { label: "くもり", accent: "cloudy" },
+    fog: { label: "霧", accent: "fog" },
+    drizzle: { label: "霧雨", accent: "rain" },
+    rain: { label: "雨", accent: "rain" },
+    snow: { label: "雪", accent: "snow" },
+    storm: { label: "雷雨", accent: "storm" },
+  };
+
+  if (code === 0) return palette.clear;
+  if ([1, 2, 3].includes(code)) return palette.cloudy;
+  if ([45, 48].includes(code)) return palette.fog;
+  if ([51, 53, 55, 56, 57].includes(code)) return palette.drizzle;
+  if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return palette.rain;
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return palette.snow;
+  if ([95, 96, 99].includes(code)) return palette.storm;
+  return { label: "天候データあり", accent: "cloudy" };
+}
+
+function weatherIcon(code, isDay = 1) {
+  if (code === 0 && isDay) return "☀";
+  if (code === 0 && !isDay) return "☾";
+  if ([1, 2].includes(code)) return "⛅";
+  if ([3, 45, 48].includes(code)) return "☁";
+  if ([51, 53, 55, 56, 57].includes(code)) return "🌦";
+  if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return "🌧";
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return "❄";
+  if ([95, 96, 99].includes(code)) return "⛈";
+  return "☁";
+}
+
+function formatWeatherTimestamp(value) {
+  if (typeof value !== "string") return "";
+  return value.replace("T", " ").slice(5, 16);
+}
+
 function renderCollection(targetId, items, renderer, className) {
   const container = document.getElementById(targetId);
   items.forEach((item) => {
@@ -549,6 +586,102 @@ function renderSupportNotes(targetId, items) {
     `,
     "stack-card support-card"
   );
+}
+
+function renderLiveWeatherState(message) {
+  const container = document.getElementById("live-weather");
+  container.innerHTML = `<div class="weather-status-card">${message}</div>`;
+}
+
+function renderLiveWeatherCards(items) {
+  const container = document.getElementById("live-weather");
+  container.innerHTML = items
+    .map((item) => {
+      const meta = weatherCodeMeta(item.current.weather_code, item.current.is_day);
+      return `
+        <article class="weather-card weather-${meta.accent}">
+          <div class="weather-card-head">
+            <div>
+              <span class="mini-label">現在</span>
+              <h4>${item.name}</h4>
+            </div>
+            <span class="weather-icon" aria-hidden="true">${weatherIcon(item.current.weather_code, item.current.is_day)}</span>
+          </div>
+          <div class="weather-temp-row">
+            <strong>${Math.round(item.current.temperature_2m)}°C</strong>
+            <span>${meta.label}</span>
+          </div>
+          <dl class="weather-stats">
+            <div>
+              <dt>体感</dt>
+              <dd>${Math.round(item.current.apparent_temperature)}°C</dd>
+            </div>
+            <div>
+              <dt>風</dt>
+              <dd>${Math.round(item.current.wind_speed_10m)} km/h</dd>
+            </div>
+            <div>
+              <dt>最高 / 最低</dt>
+              <dd>${Math.round(item.daily.temperature_2m_max[0])} / ${Math.round(item.daily.temperature_2m_min[0])}°C</dd>
+            </div>
+            <div>
+              <dt>降水確率</dt>
+              <dd>${item.daily.precipitation_probability_max[0] ?? 0}%</dd>
+            </div>
+          </dl>
+          <p class="weather-updated">現地時刻 ${formatWeatherTimestamp(item.current.time)} 時点</p>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+async function fetchCityWeather(city) {
+  const params = new URLSearchParams({
+    latitude: String(city.latitude),
+    longitude: String(city.longitude),
+    current: "temperature_2m,apparent_temperature,weather_code,wind_speed_10m,is_day",
+    daily: "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
+    forecast_days: "1",
+    timezone: "Asia/Shanghai",
+  });
+
+  const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error(`weather fetch failed: ${city.name}`);
+  }
+
+  const data = await response.json();
+  return {
+    name: city.name,
+    current: data.current,
+    daily: data.daily,
+  };
+}
+
+async function loadLiveWeather() {
+  const button = document.getElementById("weather-refresh");
+  const meta = document.getElementById("weather-meta");
+  button.disabled = true;
+  renderLiveWeatherState("最新の天気を読み込み中です。");
+
+  try {
+    const results = await Promise.all(weatherCities.map(fetchCityWeather));
+    renderLiveWeatherCards(results);
+    meta.textContent = `上海・杭州・蘇州の現在値を表示しています。最終更新: ${new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(new Date())}`;
+  } catch (error) {
+    renderLiveWeatherState("天気の取得に失敗しました。時間をおいて更新してください。");
+    meta.textContent = "リアルタイム取得に失敗した場合でも、下の気候感と持ち物の目安はそのまま使えます。";
+  } finally {
+    button.disabled = false;
+  }
 }
 
 function renderLegend() {
@@ -812,3 +945,12 @@ renderSupportNotes("weather-list", weatherNotes);
 renderSupportNotes("packing-list", packingNotes);
 renderSupportNotes("help-list", helpNotes);
 renderNotes();
+loadLiveWeather();
+
+document.getElementById("weather-refresh")?.addEventListener("click", () => {
+  loadLiveWeather();
+});
+
+window.setInterval(() => {
+  loadLiveWeather();
+}, 30 * 60 * 1000);

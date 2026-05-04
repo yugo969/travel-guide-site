@@ -166,12 +166,19 @@
           <h2>出発前に押さえること</h2>
           <p>細かい理屈より、最初に詰まりやすい判断だけを短く残しています。</p>
         </div>
-        <div class="notes-grid">
-          <div class="panel">
-            <span class="mini-label">気候</span>
-            <h3>5月上旬の気候感</h3>
-            <div id="weather-list" class="stack-list"></div>
+        <div class="panel weather-panel">
+          <div class="weather-panel-head">
+            <div>
+              <span class="mini-label">現地の天気</span>
+              <h3>いま見ている時点の気温と天候</h3>
+            </div>
+            <button id="weather-refresh" class="refresh-button" type="button">更新</button>
           </div>
+          <p id="weather-meta" class="panel-intro">上海・杭州・蘇州の現在の天気を読み込みます。</p>
+          <div id="live-weather" class="live-weather-grid"></div>
+          <div id="weather-list" class="stack-list"></div>
+        </div>
+        <div class="notes-grid">
           <div class="panel">
             <span class="mini-label">持ち物</span>
             <h3>海外旅行として足すもの</h3>
