@@ -40,54 +40,30 @@ const routeStops = [
   {
     id: "nanjing",
     label: "南京",
-    note: "追加候補",
-    stay: "1-2泊候補",
     x: 190,
-    y: 96,
+    y: 90,
     color: "#7b5c1d",
-    noteDx: 0,
-    noteDy: -44,
-    stayDx: 0,
-    stayDy: 54,
   },
   {
     id: "suzhou",
     label: "蘇州",
-    note: "近場の江南",
-    stay: "Day 7 or 日帰り",
-    x: 435,
+    x: 430,
     y: 112,
     color: "#456543",
-    noteDx: 0,
-    noteDy: -44,
-    stayDx: 0,
-    stayDy: 54,
   },
   {
     id: "shanghai",
     label: "上海",
-    note: "起点 / 帰着",
-    stay: "Day 1-4, 8-10",
     x: 650,
     y: 162,
     color: "#a93f25",
-    noteDx: 0,
-    noteDy: -48,
-    stayDx: 0,
-    stayDy: 56,
   },
   {
     id: "hangzhou",
     label: "杭州",
-    note: "上位都市感",
-    stay: "Day 5-6",
     x: 430,
     y: 248,
     color: "#0f5963",
-    noteDx: 0,
-    noteDy: -44,
-    stayDx: 0,
-    stayDy: 54,
   },
 ];
 
@@ -99,12 +75,12 @@ const routeLegs = [
     time: "45-70分",
     tone: "current",
     points: [
-      [618, 176],
-      [560, 210],
-      [472, 242],
+      [612, 162],
+      [612, 248],
+      [472, 248],
     ],
-    labelX: 574,
-    labelY: 204,
+    labelX: 540,
+    labelY: 236,
   },
   {
     from: "hangzhou",
@@ -113,11 +89,10 @@ const routeLegs = [
     time: "約1時間49分",
     tone: "current",
     points: [
-      [430, 216],
-      [430, 182],
-      [432, 144],
+      [430, 228],
+      [430, 132],
     ],
-    labelX: 520,
+    labelX: 500,
     labelY: 180,
   },
   {
@@ -127,12 +102,12 @@ const routeLegs = [
     time: "20-40分",
     tone: "current",
     points: [
-      [466, 120],
-      [540, 128],
-      [618, 154],
+      [472, 112],
+      [560, 112],
+      [612, 148],
     ],
-    labelX: 565,
-    labelY: 118,
+    labelX: 560,
+    labelY: 94,
   },
   {
     from: "hangzhou",
@@ -141,12 +116,13 @@ const routeLegs = [
     time: "1-2.5時間",
     tone: "option",
     points: [
-      [398, 238],
-      [300, 190],
-      [210, 116],
+      [388, 248],
+      [300, 248],
+      [300, 90],
+      [228, 90],
     ],
-    labelX: 282,
-    labelY: 224,
+    labelX: 300,
+    labelY: 264,
   },
   {
     from: "nanjing",
@@ -155,12 +131,12 @@ const routeLegs = [
     time: "44分-3時間",
     tone: "option",
     points: [
-      [222, 98],
-      [300, 80],
-      [398, 98],
+      [228, 90],
+      [300, 90],
+      [388, 112],
     ],
-    labelX: 334,
-    labelY: 140,
+    labelX: 300,
+    labelY: 72,
   },
 ];
 
@@ -1282,13 +1258,13 @@ function renderDiagram() {
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
   const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
   marker.setAttribute("id", "routeArrow");
-  marker.setAttribute("markerWidth", "7");
-  marker.setAttribute("markerHeight", "7");
-  marker.setAttribute("refX", "5.8");
-  marker.setAttribute("refY", "3.5");
+  marker.setAttribute("markerWidth", "4");
+  marker.setAttribute("markerHeight", "4");
+  marker.setAttribute("refX", "3.2");
+  marker.setAttribute("refY", "2");
   marker.setAttribute("orient", "auto");
   const arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  arrowPath.setAttribute("d", "M0,0 L7,3.5 L0,7 z");
+  arrowPath.setAttribute("d", "M0,0 L4,2 L0,4 z");
   arrowPath.setAttribute("fill", "#2f2924");
   marker.appendChild(arrowPath);
   defs.appendChild(marker);
@@ -1307,20 +1283,20 @@ function renderDiagram() {
   const badge = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   badge.setAttribute("x", "34");
   badge.setAttribute("y", "34");
-  badge.setAttribute("width", "148");
-  badge.setAttribute("height", "30");
-  badge.setAttribute("rx", "15");
+  badge.setAttribute("width", "116");
+  badge.setAttribute("height", "24");
+  badge.setAttribute("rx", "12");
   badge.setAttribute("fill", "rgba(15,89,99,0.08)");
   svg.appendChild(badge);
 
   const badgeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  badgeText.setAttribute("x", "108");
-  badgeText.setAttribute("y", "54");
+  badgeText.setAttribute("x", "92");
+  badgeText.setAttribute("y", "50");
   badgeText.setAttribute("text-anchor", "middle");
-  badgeText.setAttribute("font-size", "13");
+  badgeText.setAttribute("font-size", "11");
   badgeText.setAttribute("font-weight", "700");
   badgeText.setAttribute("fill", "#0f5963");
-  badgeText.textContent = "位置関係つきのルート図";
+  badgeText.textContent = "概略ルート";
   svg.appendChild(badgeText);
 
   routeLegs.forEach((leg) => {
@@ -1328,29 +1304,29 @@ function renderDiagram() {
     polyline.setAttribute("points", leg.points.map((point) => point.join(",")).join(" "));
     polyline.setAttribute("fill", "none");
     polyline.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
-    polyline.setAttribute("stroke-width", leg.tone === "current" ? "3" : "2.5");
+    polyline.setAttribute("stroke-width", leg.tone === "current" ? "2.2" : "1.8");
     polyline.setAttribute("stroke-linecap", "round");
     polyline.setAttribute("stroke-linejoin", "round");
     if (leg.tone === "option") {
-      polyline.setAttribute("stroke-dasharray", "8 8");
+      polyline.setAttribute("stroke-dasharray", "5 5");
     }
     polyline.setAttribute("marker-end", "url(#routeArrow)");
     svg.appendChild(polyline);
 
     const orderBadge = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    orderBadge.setAttribute("cx", leg.labelX - 58);
-    orderBadge.setAttribute("cy", leg.labelY - 4);
-    orderBadge.setAttribute("r", "16");
+    orderBadge.setAttribute("cx", leg.labelX - 44);
+    orderBadge.setAttribute("cy", leg.labelY - 2);
+    orderBadge.setAttribute("r", "11");
     orderBadge.setAttribute("fill", "#ffffff");
     orderBadge.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
-    orderBadge.setAttribute("stroke-width", "2");
+    orderBadge.setAttribute("stroke-width", "1.4");
     svg.appendChild(orderBadge);
 
     const orderText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    orderText.setAttribute("x", leg.labelX - 58);
+    orderText.setAttribute("x", leg.labelX - 44);
     orderText.setAttribute("y", leg.labelY + 2);
     orderText.setAttribute("text-anchor", "middle");
-    orderText.setAttribute("font-size", leg.order.length > 1 ? "11" : "14");
+    orderText.setAttribute("font-size", leg.order.length > 1 ? "8.5" : "10");
     orderText.setAttribute("font-weight", "700");
     orderText.textContent = String(leg.order);
     svg.appendChild(orderText);
@@ -1359,47 +1335,32 @@ function renderDiagram() {
       x: leg.labelX,
       y: leg.labelY,
       text: leg.time,
-      fontSize: 12,
+      fontSize: 10,
       fill: leg.tone === "current" ? "#2f2924" : "#7b5c1d",
+      paddingX: 6,
+      paddingY: 4,
     });
   });
 
   routeStops.forEach((stop) => {
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", stop.x);
-    circle.setAttribute("cy", stop.y);
-    circle.setAttribute("r", "31");
-    circle.setAttribute("fill", stop.color);
-    svg.appendChild(circle);
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", stop.x - 34);
+    rect.setAttribute("y", stop.y - 16);
+    rect.setAttribute("width", "68");
+    rect.setAttribute("height", "32");
+    rect.setAttribute("rx", "12");
+    rect.setAttribute("fill", stop.color);
+    svg.appendChild(rect);
 
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("x", stop.x);
-    label.setAttribute("y", stop.y + 6);
+    label.setAttribute("y", stop.y + 5);
     label.setAttribute("text-anchor", "middle");
-    label.setAttribute("font-size", "16");
+    label.setAttribute("font-size", "14");
     label.setAttribute("font-weight", "700");
     label.setAttribute("fill", "#ffffff");
     label.textContent = stop.label;
     svg.appendChild(label);
-
-    appendTextWithBg({
-      x: stop.x + (stop.noteDx || 0),
-      y: stop.y + (stop.noteDy || -46),
-      text: stop.note,
-      fontSize: 12,
-      fill: stop.color,
-      bgFill: "rgba(248,242,233,0.95)",
-    });
-
-    appendTextWithBg({
-      x: stop.x + (stop.stayDx || 0),
-      y: stop.y + (stop.stayDy || 52),
-      text: stop.stay,
-      fontSize: 12,
-      fontWeight: "600",
-      fill: "#625a52",
-      bgFill: "rgba(248,242,233,0.95)",
-    });
   });
 
   container.appendChild(svg);
