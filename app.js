@@ -96,21 +96,21 @@ const routeLegs = [
     from: "shanghai",
     to: "hangzhou",
     order: "1",
-    time: "約45-70分 / 2等 29元〜",
+    time: "45-70分",
     tone: "current",
     points: [
       [618, 176],
       [560, 210],
       [472, 242],
     ],
-    labelX: 560,
-    labelY: 234,
+    labelX: 574,
+    labelY: 204,
   },
   {
     from: "hangzhou",
     to: "suzhou",
     order: "2",
-    time: "約1時間49分 / 2等 110元〜",
+    time: "約1時間49分",
     tone: "current",
     points: [
       [430, 216],
@@ -124,7 +124,7 @@ const routeLegs = [
     from: "suzhou",
     to: "shanghai",
     order: "3",
-    time: "約20-40分 / 2等 12元〜",
+    time: "20-40分",
     tone: "current",
     points: [
       [466, 120],
@@ -132,13 +132,13 @@ const routeLegs = [
       [618, 154],
     ],
     labelX: 565,
-    labelY: 104,
+    labelY: 118,
   },
   {
     from: "hangzhou",
     to: "nanjing",
     order: "2A",
-    time: "約1-2.5時間 / 2等 84元〜",
+    time: "1-2.5時間",
     tone: "option",
     points: [
       [398, 238],
@@ -146,21 +146,21 @@ const routeLegs = [
       [210, 116],
     ],
     labelX: 282,
-    labelY: 214,
+    labelY: 224,
   },
   {
     from: "nanjing",
     to: "suzhou",
     order: "2B",
-    time: "約44分-3時間 / 2等 40元〜",
+    time: "44分-3時間",
     tone: "option",
     points: [
       [222, 98],
       [300, 80],
       [398, 98],
     ],
-    labelX: 312,
-    labelY: 56,
+    labelX: 334,
+    labelY: 140,
   },
 ];
 
@@ -1246,16 +1246,49 @@ function renderDiagram() {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", "0 0 820 320");
 
+  function appendTextWithBg({
+    x,
+    y,
+    text,
+    fontSize = 12,
+    fontWeight = "700",
+    fill = "#625a52",
+    bgFill = "rgba(255,255,255,0.92)",
+    paddingX = 8,
+    paddingY = 6,
+  }) {
+    const width = Math.max(44, text.length * fontSize * 0.98 + paddingX * 2);
+    const height = fontSize + paddingY * 2;
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", x - width / 2);
+    rect.setAttribute("y", y - fontSize + 2 - paddingY);
+    rect.setAttribute("width", width);
+    rect.setAttribute("height", height);
+    rect.setAttribute("rx", "10");
+    rect.setAttribute("fill", bgFill);
+    svg.appendChild(rect);
+
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.setAttribute("x", x);
+    label.setAttribute("y", y);
+    label.setAttribute("text-anchor", "middle");
+    label.setAttribute("font-size", String(fontSize));
+    label.setAttribute("font-weight", fontWeight);
+    label.setAttribute("fill", fill);
+    label.textContent = text;
+    svg.appendChild(label);
+  }
+
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
   const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
   marker.setAttribute("id", "routeArrow");
-  marker.setAttribute("markerWidth", "10");
-  marker.setAttribute("markerHeight", "10");
-  marker.setAttribute("refX", "8");
-  marker.setAttribute("refY", "5");
+  marker.setAttribute("markerWidth", "7");
+  marker.setAttribute("markerHeight", "7");
+  marker.setAttribute("refX", "5.8");
+  marker.setAttribute("refY", "3.5");
   marker.setAttribute("orient", "auto");
   const arrowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  arrowPath.setAttribute("d", "M0,0 L10,5 L0,10 z");
+  arrowPath.setAttribute("d", "M0,0 L7,3.5 L0,7 z");
   arrowPath.setAttribute("fill", "#2f2924");
   marker.appendChild(arrowPath);
   defs.appendChild(marker);
@@ -1290,20 +1323,12 @@ function renderDiagram() {
   badgeText.textContent = "位置関係つきのルート図";
   svg.appendChild(badgeText);
 
-  const noteText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  noteText.setAttribute("x", "210");
-  noteText.setAttribute("y", "54");
-  noteText.setAttribute("font-size", "12");
-  noteText.setAttribute("fill", "#625a52");
-  noteText.textContent = "実線 = 今の案 / 破線 = 南京を入れる差し替え案";
-  svg.appendChild(noteText);
-
   routeLegs.forEach((leg) => {
     const polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
     polyline.setAttribute("points", leg.points.map((point) => point.join(",")).join(" "));
     polyline.setAttribute("fill", "none");
     polyline.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
-    polyline.setAttribute("stroke-width", leg.tone === "current" ? "3.5" : "3");
+    polyline.setAttribute("stroke-width", leg.tone === "current" ? "3" : "2.5");
     polyline.setAttribute("stroke-linecap", "round");
     polyline.setAttribute("stroke-linejoin", "round");
     if (leg.tone === "option") {
@@ -1330,23 +1355,13 @@ function renderDiagram() {
     orderText.textContent = String(leg.order);
     svg.appendChild(orderText);
 
-    const labelBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    labelBg.setAttribute("x", leg.labelX - 32);
-    labelBg.setAttribute("y", leg.labelY - 16);
-    labelBg.setAttribute("width", "172");
-    labelBg.setAttribute("height", "24");
-    labelBg.setAttribute("rx", "12");
-    labelBg.setAttribute("fill", "rgba(255,255,255,0.92)");
-    svg.appendChild(labelBg);
-
-    const timeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    timeText.setAttribute("x", leg.labelX - 20);
-    timeText.setAttribute("y", leg.labelY);
-    timeText.setAttribute("font-size", "12");
-    timeText.setAttribute("font-weight", "700");
-    timeText.setAttribute("fill", leg.tone === "current" ? "#2f2924" : "#7b5c1d");
-    timeText.textContent = leg.time;
-    svg.appendChild(timeText);
+    appendTextWithBg({
+      x: leg.labelX,
+      y: leg.labelY,
+      text: leg.time,
+      fontSize: 12,
+      fill: leg.tone === "current" ? "#2f2924" : "#7b5c1d",
+    });
   });
 
   routeStops.forEach((stop) => {
@@ -1367,24 +1382,24 @@ function renderDiagram() {
     label.textContent = stop.label;
     svg.appendChild(label);
 
-    const stay = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    stay.setAttribute("x", stop.x + (stop.stayDx || 0));
-    stay.setAttribute("y", stop.y + (stop.stayDy || 52));
-    stay.setAttribute("text-anchor", "middle");
-    stay.setAttribute("font-size", "12");
-    stay.setAttribute("fill", "#625a52");
-    stay.textContent = stop.stay;
-    svg.appendChild(stay);
+    appendTextWithBg({
+      x: stop.x + (stop.noteDx || 0),
+      y: stop.y + (stop.noteDy || -46),
+      text: stop.note,
+      fontSize: 12,
+      fill: stop.color,
+      bgFill: "rgba(248,242,233,0.95)",
+    });
 
-    const note = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    note.setAttribute("x", stop.x + (stop.noteDx || 0));
-    note.setAttribute("y", stop.y + (stop.noteDy || -46));
-    note.setAttribute("text-anchor", "middle");
-    note.setAttribute("font-size", "12");
-    note.setAttribute("font-weight", "700");
-    note.setAttribute("fill", stop.color);
-    note.textContent = stop.note;
-    svg.appendChild(note);
+    appendTextWithBg({
+      x: stop.x + (stop.stayDx || 0),
+      y: stop.y + (stop.stayDy || 52),
+      text: stop.stay,
+      fontSize: 12,
+      fontWeight: "600",
+      fill: "#625a52",
+      bgFill: "rgba(248,242,233,0.95)",
+    });
   });
 
   container.appendChild(svg);
