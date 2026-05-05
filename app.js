@@ -37,16 +37,149 @@ const overviewFocus = [
 ];
 
 const routeStops = [
-  { label: "上海", note: "スタート", stay: "Day 1-4", x: 180, y: 92, color: "#a93f25" },
-  { label: "杭州", note: "高鉄で南へ", stay: "Day 5-6", x: 620, y: 92, color: "#0f5963" },
-  { label: "蘇州", note: "江南を北上", stay: "Day 7", x: 620, y: 228, color: "#456543" },
-  { label: "上海", note: "戻って深掘り", stay: "Day 8-10", x: 180, y: 228, color: "#a93f25" },
+  {
+    id: "nanjing",
+    label: "南京",
+    note: "追加候補",
+    stay: "1-2泊候補",
+    x: 190,
+    y: 96,
+    color: "#7b5c1d",
+    noteDx: 0,
+    noteDy: -44,
+    stayDx: 0,
+    stayDy: 54,
+  },
+  {
+    id: "suzhou",
+    label: "蘇州",
+    note: "近場の江南",
+    stay: "Day 7 or 日帰り",
+    x: 435,
+    y: 112,
+    color: "#456543",
+    noteDx: 0,
+    noteDy: -44,
+    stayDx: 0,
+    stayDy: 54,
+  },
+  {
+    id: "shanghai",
+    label: "上海",
+    note: "起点 / 帰着",
+    stay: "Day 1-4, 8-10",
+    x: 650,
+    y: 162,
+    color: "#a93f25",
+    noteDx: 0,
+    noteDy: -48,
+    stayDx: 0,
+    stayDy: 56,
+  },
+  {
+    id: "hangzhou",
+    label: "杭州",
+    note: "上位都市感",
+    stay: "Day 5-6",
+    x: 430,
+    y: 248,
+    color: "#0f5963",
+    noteDx: 0,
+    noteDy: -44,
+    stayDx: 0,
+    stayDy: 54,
+  },
 ];
 
 const routeLegs = [
-  { from: 0, to: 1, order: 1, time: "高鉄 約1時間", title: "上海 → 杭州" },
-  { from: 1, to: 2, order: 2, time: "高鉄 約1.5-2時間", title: "杭州 → 蘇州" },
-  { from: 2, to: 3, order: 3, time: "高鉄 約30-40分", title: "蘇州 → 上海" },
+  {
+    from: "shanghai",
+    to: "hangzhou",
+    order: "1",
+    time: "約45-70分 / 2等 29元〜",
+    tone: "current",
+    points: [
+      [618, 176],
+      [560, 210],
+      [472, 242],
+    ],
+    labelX: 560,
+    labelY: 234,
+  },
+  {
+    from: "hangzhou",
+    to: "suzhou",
+    order: "2",
+    time: "約1時間49分 / 2等 110元〜",
+    tone: "current",
+    points: [
+      [430, 216],
+      [430, 182],
+      [432, 144],
+    ],
+    labelX: 520,
+    labelY: 180,
+  },
+  {
+    from: "suzhou",
+    to: "shanghai",
+    order: "3",
+    time: "約20-40分 / 2等 12元〜",
+    tone: "current",
+    points: [
+      [466, 120],
+      [540, 128],
+      [618, 154],
+    ],
+    labelX: 565,
+    labelY: 104,
+  },
+  {
+    from: "hangzhou",
+    to: "nanjing",
+    order: "2A",
+    time: "約1-2.5時間 / 2等 84元〜",
+    tone: "option",
+    points: [
+      [398, 238],
+      [300, 190],
+      [210, 116],
+    ],
+    labelX: 282,
+    labelY: 214,
+  },
+  {
+    from: "nanjing",
+    to: "suzhou",
+    order: "2B",
+    time: "約44分-3時間 / 2等 40元〜",
+    tone: "option",
+    points: [
+      [222, 98],
+      [300, 80],
+      [398, 98],
+    ],
+    labelX: 312,
+    labelY: 56,
+  },
+];
+
+const routeOptions = [
+  {
+    label: "基本ルート",
+    title: "上海 → 杭州 → 蘇州 → 上海",
+    text: "今の10日案。都市間の2等席は合計 約151元からで、杭州と蘇州をそのままつなぐ形です。",
+  },
+  {
+    label: "南京を差し込む案",
+    title: "上海 → 杭州 → 南京 → 蘇州 → 上海",
+    text: "杭州 → 蘇州 を 南京経由に差し替える案。2等席は合計 約165元からで、増分は約14元です。",
+  },
+  {
+    label: "住む視点を強める案",
+    title: "上海 → 杭州 → 南京 → 上海",
+    text: "蘇州の宿泊を南京へ置き換えると、生活感や本土感の比較がしやすくなります。2等席は合計 約168元からです。",
+  },
 ];
 
 const schedule = [
@@ -933,8 +1066,12 @@ async function loadLiveWeather() {
 function renderLegend() {
   renderCollection(
     "route-legend",
-    routeLegs,
-    (item) => `<strong>${item.title}</strong><p>${item.time}</p>`,
+    routeOptions,
+    (item) => `
+      <span class="mini-label">${item.label}</span>
+      <strong>${item.title}</strong>
+      <p>${item.text}</p>
+    `,
     "legend-card"
   );
 }
@@ -1150,51 +1287,64 @@ function renderDiagram() {
   badgeText.setAttribute("font-size", "13");
   badgeText.setAttribute("font-weight", "700");
   badgeText.setAttribute("fill", "#0f5963");
-  badgeText.textContent = "上海起点の周回ルート";
+  badgeText.textContent = "位置関係つきのルート図";
   svg.appendChild(badgeText);
 
+  const noteText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  noteText.setAttribute("x", "210");
+  noteText.setAttribute("y", "54");
+  noteText.setAttribute("font-size", "12");
+  noteText.setAttribute("fill", "#625a52");
+  noteText.textContent = "実線 = 今の案 / 破線 = 南京を入れる差し替え案";
+  svg.appendChild(noteText);
+
   routeLegs.forEach((leg) => {
-    const from = routeStops[leg.from];
-    const to = routeStops[leg.to];
-
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", from.x);
-    line.setAttribute("y1", from.y);
-    line.setAttribute("x2", to.x);
-    line.setAttribute("y2", to.y);
-    line.setAttribute("stroke", "#2f2924");
-    line.setAttribute("stroke-width", "3");
-    line.setAttribute("stroke-linecap", "round");
-    line.setAttribute("marker-end", "url(#routeArrow)");
-    svg.appendChild(line);
-
-    const midX = (from.x + to.x) / 2;
-    const midY = (from.y + to.y) / 2;
+    const polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+    polyline.setAttribute("points", leg.points.map((point) => point.join(",")).join(" "));
+    polyline.setAttribute("fill", "none");
+    polyline.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
+    polyline.setAttribute("stroke-width", leg.tone === "current" ? "3.5" : "3");
+    polyline.setAttribute("stroke-linecap", "round");
+    polyline.setAttribute("stroke-linejoin", "round");
+    if (leg.tone === "option") {
+      polyline.setAttribute("stroke-dasharray", "8 8");
+    }
+    polyline.setAttribute("marker-end", "url(#routeArrow)");
+    svg.appendChild(polyline);
 
     const orderBadge = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    orderBadge.setAttribute("cx", midX);
-    orderBadge.setAttribute("cy", midY - 18);
+    orderBadge.setAttribute("cx", leg.labelX - 58);
+    orderBadge.setAttribute("cy", leg.labelY - 4);
     orderBadge.setAttribute("r", "16");
     orderBadge.setAttribute("fill", "#ffffff");
-    orderBadge.setAttribute("stroke", "#2f2924");
+    orderBadge.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
     orderBadge.setAttribute("stroke-width", "2");
     svg.appendChild(orderBadge);
 
     const orderText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    orderText.setAttribute("x", midX);
-    orderText.setAttribute("y", midY - 12);
+    orderText.setAttribute("x", leg.labelX - 58);
+    orderText.setAttribute("y", leg.labelY + 2);
     orderText.setAttribute("text-anchor", "middle");
-    orderText.setAttribute("font-size", "14");
+    orderText.setAttribute("font-size", leg.order.length > 1 ? "11" : "14");
     orderText.setAttribute("font-weight", "700");
     orderText.textContent = String(leg.order);
     svg.appendChild(orderText);
 
+    const labelBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    labelBg.setAttribute("x", leg.labelX - 32);
+    labelBg.setAttribute("y", leg.labelY - 16);
+    labelBg.setAttribute("width", "172");
+    labelBg.setAttribute("height", "24");
+    labelBg.setAttribute("rx", "12");
+    labelBg.setAttribute("fill", "rgba(255,255,255,0.92)");
+    svg.appendChild(labelBg);
+
     const timeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    timeText.setAttribute("x", midX);
-    timeText.setAttribute("y", midY + 15);
-    timeText.setAttribute("text-anchor", "middle");
-    timeText.setAttribute("font-size", "13");
-    timeText.setAttribute("fill", "#625a52");
+    timeText.setAttribute("x", leg.labelX - 20);
+    timeText.setAttribute("y", leg.labelY);
+    timeText.setAttribute("font-size", "12");
+    timeText.setAttribute("font-weight", "700");
+    timeText.setAttribute("fill", leg.tone === "current" ? "#2f2924" : "#7b5c1d");
     timeText.textContent = leg.time;
     svg.appendChild(timeText);
   });
@@ -1218,8 +1368,8 @@ function renderDiagram() {
     svg.appendChild(label);
 
     const stay = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    stay.setAttribute("x", stop.x);
-    stay.setAttribute("y", stop.y + 52);
+    stay.setAttribute("x", stop.x + (stop.stayDx || 0));
+    stay.setAttribute("y", stop.y + (stop.stayDy || 52));
     stay.setAttribute("text-anchor", "middle");
     stay.setAttribute("font-size", "12");
     stay.setAttribute("fill", "#625a52");
@@ -1227,8 +1377,8 @@ function renderDiagram() {
     svg.appendChild(stay);
 
     const note = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    note.setAttribute("x", stop.x);
-    note.setAttribute("y", stop.y - 46);
+    note.setAttribute("x", stop.x + (stop.noteDx || 0));
+    note.setAttribute("y", stop.y + (stop.noteDy || -46));
     note.setAttribute("text-anchor", "middle");
     note.setAttribute("font-size", "12");
     note.setAttribute("font-weight", "700");
