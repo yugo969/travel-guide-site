@@ -232,10 +232,11 @@ const weatherCities = [
 
 const travelTools = [
   {
-    title: "高鉄の予約と駅の流れ",
-    text: "上海-杭州-蘇州は高鉄に慣れればかなり楽です。まずは予約方法より、駅で何が起こるかを先に掴むほうが迷いません。",
+    title: "高鉄は 12306 か Trip.com に寄せる",
+    text: "上海-杭州-蘇州は高鉄に慣れればかなり楽です。列車だけはミニプログラムに散らさず、12306 公式か Trip.com に寄せた方が迷いません。外国旅券なら 12306 英語版でパスポート登録できます。",
     icon: "move",
     steps: [
+      "外国旅券でも 12306 英語版はパスポートで登録できる",
       "予約は Trip.com か 12306 のどちらかに絞る",
       "駅では 手荷物検査 → 改札 → ホーム の順に進む",
       "初回は 出発の45〜60分前 に着く前提で考える",
@@ -251,16 +252,22 @@ const travelTools = [
         note: "公式で直接予約したいときの入口。英語表示あり。",
         href: "https://www.12306.cn/en/",
       },
+      {
+        title: "12306 FAQ: パスポートで予約できるか",
+        note: "英語版は外国旅券を受け付けること、e-ticket は購入時の身分証で乗ることを確認できます。",
+        href: "https://www.12306.cn/en/faq.html",
+      },
     ],
   },
   {
     title: "Alipay を先に通す",
-    text: "短期旅行なら、まずは Alipay を先に使える状態にするのが分かりやすいです。地下鉄や日常決済まで広く使いやすい側です。",
+    text: "短期旅行なら、まずは Alipay を先に使える状態にするのが分かりやすいです。支払いだけでなく、地下鉄、配車、旅行系ミニプログラムの入口としても使いやすい側です。",
     icon: "wallet",
     steps: [
       "アプリ登録を済ませる",
       "国際カードを追加して本人確認まで終える",
       "現地では スキャン と 支払いコード表示 の両方を使う",
+      "地下鉄や旅行系の入口は Alipay から開く前提で考える",
     ],
     links: [
       {
@@ -268,44 +275,111 @@ const travelTools = [
         note: "上海市の日本語ページ。対応カード、始め方、手数料まで必要な範囲に絞られています。",
         href: "https://japanese.shanghai.gov.cn/ja-FAQs-StudyinShanghai/20240329/4394828530e246839d8101f0121b1872.html",
       },
+      {
+        title: "Alipay国際版で使える旅行機能",
+        note: "ホテル、航空券、配車、公共交通などの旅行機能を Alipay 側が案内しています。",
+        href: "https://www.businesswire.com/news/home/20230817606059/en/Alipay-Updates-International-Version-Featuring-Services-Tailored-for-International-Visitors-Travelling-in-China",
+      },
     ],
   },
   {
-    title: "WeChat Pay は予備ではなく保険",
-    text: "Alipay だけでも動ける場面は多いですが、店やミニプログラム次第で WeChat Pay が効く場面があります。両方登録しておくと止まりにくいです。",
+    title: "WeChat Pay は補助兼ミニプログラム保険",
+    text: "Alipay だけでも動ける場面は多いですが、店やサービス次第で WeChat Pay の方が自然な場面があります。ミニプログラム決済の保険として両方登録しておくと止まりにくいです。",
     icon: "phone",
     steps: [
       "WeChat アカウントを先に作る",
       "カード登録と支払いコード表示まで確認する",
       "送金機能ではなく 旅行中の支払い用 と割り切る",
+      "WeChat 内で決済が必要になったらその場で切り替える",
     ],
     links: [
       {
-        title: "日本語ガイド: WeChat / Alipay の使い方",
-        note: "日本人旅行者向けに、WeChat Pay と Alipay をまとめて確認できます。",
-        href: "https://media.xsight.co.jp/article/1286",
+        title: "Tencent公式: Weixin Pay の旅行者向け案内",
+        note: "海外カード連携後に、中国本土の小規模店や屋台まで広く使えると Tencent 側が案内しています。",
+        href: "https://www.tencent.com/en-us/articles/2201831.html",
+      },
+      {
+        title: "Tencent公式: ミニプログラム決済も使える範囲",
+        note: "Weixin Pay が QR 決済だけでなく、Weixin Mini Programs や in-app 決済にも使えると案内しています。",
+        href: "https://www.tencent.com.cn/en-us/articles/2201652.html",
       },
     ],
   },
   {
-    title: "eSIM は対応確認だけ先に終える",
-    text: "通信が入れば、配車、翻訳、予約確認まで全部立て直せます。事前に自分の端末が eSIM 対応かを見るだけでも十分価値があります。",
+    title: "eSIM は VPN付きより VPN不要型を選ぶ",
+    text: "Google翻訳や Gmail を使いたいなら、中国向け eSIM は『VPN同梱』より『香港・海外ゲートウェイ経由で Google 系がそのまま通る』タイプを選ぶ方が分かりやすいです。Trip.com 公式も、中国向け travel eSIM は海外や香港経由で通信し、別VPNなしで使えると案内しています。Alipay / WeChat ミニプログラム経由の eSIM について、公式に VPN 同梱を明記したものは確認できませんでした。",
     icon: "wifi",
     steps: [
+      "Google翻訳や Gmail を使いたいなら no VPN required の表記を確認する",
       "自分の iPhone が eSIM 対応か確認する",
       "開通は出発前日か当日に合わせる",
-      "つながらない時の確認手順を1本だけ持っておく",
+      "迷ったら Trip.com の中国 eSIM を app か web で買う",
     ],
     links: [
       {
-        title: "日本語公式: eSIM について",
-        note: "Apple の日本語サポート。対応確認と基本設定の入口として十分です。",
-        href: "https://support.apple.com/ja-jp/119606",
+        title: "Trip.com公式: 中国 eSIM は VPN不要で使えるか",
+        note: "中国向け travel eSIM が海外/HKゲートウェイ経由で Google 系を使えると説明しています。",
+        href: "https://www.trip.com/guide/info/does-esim-work-in-china.html",
       },
       {
-        title: "困った時: eSIM を設定できない場合",
-        note: "つながらない時の確認項目だけを見たい場合はこちら。",
-        href: "https://support.apple.com/ja-jp/102478",
+        title: "Trip.com公式: 中国向け eSIM の選び方",
+        note: "中国向け eSIM の種類と、香港/中国本土をまたぐプランの考え方をまとめています。",
+        href: "https://www.trip.com/guide/phone/china-esim.html",
+      },
+      {
+        title: "Apple公式: eSIM の対応確認",
+        note: "端末が eSIM 対応か、基本設定の入口だけ先に確認したい場合はこちら。",
+        href: "https://support.apple.com/ja-jp/119606",
+      },
+    ],
+  },
+  {
+    title: "入国カードは NIA 12367 で先に終える",
+    text: "2025年11月20日以降、外国人の Arrival Card はオンライン提出に対応しました。出発前にウェブで済ませてもよいし、NIA 12367 の WeChat / Alipay ミニプログラムでも入力できます。分からなければ空港で QR を読むか紙でも通せます。",
+    icon: "plan",
+    steps: [
+      "出発前に Arrival Card の公式ページで入力する",
+      "オンライン提出は無料。公式 URL 以外は使わない",
+      "できなければ空港の QR、端末、紙のカードで対応する",
+    ],
+    links: [
+      {
+        title: "NIA公式: Arrival Card の入力ページ",
+        note: "事前入力の本体。出発前にここで終えておくのが一番早いです。",
+        href: "https://s.nia.gov.cn/ArrivalCardFillingPC/",
+      },
+      {
+        title: "NIA公式: Arrival Card のオンライン提出方法",
+        note: "NIA 12367 app、WeChat / Alipay ミニプログラム、空港 QR で提出できることを確認できます。",
+        href: "https://en.nia.gov.cn/n147418/n147463/c195170/content.html",
+      },
+      {
+        title: "NIA公式: 偽サイト注意と無料案内",
+        note: "Arrival Card のオンライン提出は無料で、公式経路だけを使うように案内しています。",
+        href: "https://en.nia.gov.cn/n147418/n147463/c191530/content.html",
+      },
+    ],
+  },
+  {
+    title: "Alipay / WeChat 内で片付く範囲を分ける",
+    text: "全部を1つのアプリで完結させるのは無理ですが、Alipay / WeChat の中だけでも、支払い、地下鉄、配車、入国カードまではかなり片付きます。列車予約と eSIM は外に出した方が安定します。",
+    icon: "logic",
+    steps: [
+      "まず Alipay に国際カードを登録する",
+      "次に NIA 12367 を WeChat / Alipay のミニプログラムに追加する",
+      "地下鉄 QR と DiDi は現地で必要になった時に開く",
+      "高鉄は 12306 / Trip.com、eSIM は Trip.com app / web に寄せる",
+    ],
+    links: [
+      {
+        title: "Alipay国際版でまとまる旅行機能",
+        note: "公共交通、配車、ホテル、航空券などを Alipay 側が旅行機能としてまとめています。",
+        href: "https://www.businesswire.com/news/home/20230817606059/en/Alipay-Updates-International-Version-Featuring-Services-Tailored-for-International-Visitors-Travelling-in-China",
+      },
+      {
+        title: "NIA公式: 12367 ミニプログラムでできること",
+        note: "NIA 12367 が WeChat / Alipay ミニプログラムで使えることと、24時間の問い合わせ導線を確認できます。",
+        href: "https://en.nia.gov.cn/n147413/c160885/content.html",
       },
     ],
   },
