@@ -230,32 +230,59 @@ const weatherCities = [
   { name: "蘇州", latitude: 31.2989, longitude: 120.5853 },
 ];
 
-const travelTools = [
+const prepTools = [
   {
-    title: "高鉄は 12306 か Trip.com に寄せる",
-    text: "上海-杭州-蘇州は高鉄に慣れればかなり楽です。列車だけはミニプログラムに散らさず、12306 公式か Trip.com に寄せた方が迷いません。外国旅券なら 12306 英語版でパスポート登録できます。",
-    icon: "move",
+    title: "入国カードは NIA 12367 で先に終える",
+    text: "上海に着いて最初に詰まりやすいのは入国時の入力です。2025年11月20日以降、外国人の Arrival Card はオンライン提出に対応しました。出発前にウェブで済ませてもよいし、NIA 12367 の WeChat / Alipay ミニプログラムでも入力できます。",
+    icon: "plan",
     steps: [
-      "外国旅券でも 12306 英語版はパスポートで登録できる",
-      "予約は Trip.com か 12306 のどちらかに絞る",
-      "駅では 手荷物検査 → 改札 → ホーム の順に進む",
-      "初回は 出発の45〜60分前 に着く前提で考える",
+      "出発前に Arrival Card の公式ページで入力する",
+      "オンライン提出は無料。公式 URL 以外は使わない",
+      "できなければ空港の QR、端末、紙のカードで対応する",
     ],
     links: [
       {
-        title: "まず読む: 日本語で高鉄の乗り方",
-        note: "日本人向けに、予約から駅での流れまでを一通り追える記事。",
-        href: "https://media.xsight.co.jp/article/1402/",
+        title: "NIA公式: Arrival Card の入力ページ",
+        note: "事前入力の本体。出発前にここで終えておくのが一番早いです。",
+        href: "https://s.nia.gov.cn/ArrivalCardFillingPC/",
       },
       {
-        title: "予約する: 12306公式",
-        note: "公式で直接予約したいときの入口。英語表示あり。",
-        href: "https://www.12306.cn/en/",
+        title: "NIA公式: Arrival Card のオンライン提出方法",
+        note: "NIA 12367 app、WeChat / Alipay ミニプログラム、空港 QR で提出できることを確認できます。",
+        href: "https://en.nia.gov.cn/n147418/n147463/c195170/content.html",
       },
       {
-        title: "12306 FAQ: パスポートで予約できるか",
-        note: "英語版は外国旅券を受け付けること、e-ticket は購入時の身分証で乗ることを確認できます。",
-        href: "https://www.12306.cn/en/faq.html",
+        title: "NIA公式: 偽サイト注意と無料案内",
+        note: "Arrival Card のオンライン提出は無料で、公式経路だけを使うように案内しています。",
+        href: "https://en.nia.gov.cn/n147418/n147463/c191530/content.html",
+      },
+    ],
+  },
+  {
+    title: "eSIM は VPN付きより VPN不要型を選ぶ",
+    text: "Google翻訳や Gmail を使いたいなら、中国向け eSIM は『VPN同梱』より『香港・海外ゲートウェイ経由で Google 系がそのまま通る』タイプを選ぶ方が分かりやすいです。Trip.com 公式も、中国向け travel eSIM は海外や香港経由で通信し、別VPNなしで使えると案内しています。Alipay / WeChat ミニプログラム経由の eSIM について、公式に VPN 同梱を明記したものは確認できませんでした。",
+    icon: "wifi",
+    steps: [
+      "Google翻訳や Gmail を使いたいなら no VPN required の表記を確認する",
+      "自分の iPhone が eSIM 対応か確認する",
+      "開通は出発前日か当日に合わせる",
+      "迷ったら Trip.com の中国 eSIM を app か web で買う",
+    ],
+    links: [
+      {
+        title: "Trip.com公式: 中国 eSIM は VPN不要で使えるか",
+        note: "中国向け travel eSIM が海外/HKゲートウェイ経由で Google 系を使えると説明しています。",
+        href: "https://www.trip.com/guide/info/does-esim-work-in-china.html",
+      },
+      {
+        title: "Trip.com公式: 中国向け eSIM の選び方",
+        note: "中国向け eSIM の種類と、香港/中国本土をまたぐプランの考え方をまとめています。",
+        href: "https://www.trip.com/guide/phone/china-esim.html",
+      },
+      {
+        title: "Apple公式: eSIM の対応確認",
+        note: "端末が eSIM 対応か、基本設定の入口だけ先に確認したい場合はこちら。",
+        href: "https://support.apple.com/ja-jp/119606",
       },
     ],
   },
@@ -306,61 +333,6 @@ const travelTools = [
     ],
   },
   {
-    title: "eSIM は VPN付きより VPN不要型を選ぶ",
-    text: "Google翻訳や Gmail を使いたいなら、中国向け eSIM は『VPN同梱』より『香港・海外ゲートウェイ経由で Google 系がそのまま通る』タイプを選ぶ方が分かりやすいです。Trip.com 公式も、中国向け travel eSIM は海外や香港経由で通信し、別VPNなしで使えると案内しています。Alipay / WeChat ミニプログラム経由の eSIM について、公式に VPN 同梱を明記したものは確認できませんでした。",
-    icon: "wifi",
-    steps: [
-      "Google翻訳や Gmail を使いたいなら no VPN required の表記を確認する",
-      "自分の iPhone が eSIM 対応か確認する",
-      "開通は出発前日か当日に合わせる",
-      "迷ったら Trip.com の中国 eSIM を app か web で買う",
-    ],
-    links: [
-      {
-        title: "Trip.com公式: 中国 eSIM は VPN不要で使えるか",
-        note: "中国向け travel eSIM が海外/HKゲートウェイ経由で Google 系を使えると説明しています。",
-        href: "https://www.trip.com/guide/info/does-esim-work-in-china.html",
-      },
-      {
-        title: "Trip.com公式: 中国向け eSIM の選び方",
-        note: "中国向け eSIM の種類と、香港/中国本土をまたぐプランの考え方をまとめています。",
-        href: "https://www.trip.com/guide/phone/china-esim.html",
-      },
-      {
-        title: "Apple公式: eSIM の対応確認",
-        note: "端末が eSIM 対応か、基本設定の入口だけ先に確認したい場合はこちら。",
-        href: "https://support.apple.com/ja-jp/119606",
-      },
-    ],
-  },
-  {
-    title: "入国カードは NIA 12367 で先に終える",
-    text: "2025年11月20日以降、外国人の Arrival Card はオンライン提出に対応しました。出発前にウェブで済ませてもよいし、NIA 12367 の WeChat / Alipay ミニプログラムでも入力できます。分からなければ空港で QR を読むか紙でも通せます。",
-    icon: "plan",
-    steps: [
-      "出発前に Arrival Card の公式ページで入力する",
-      "オンライン提出は無料。公式 URL 以外は使わない",
-      "できなければ空港の QR、端末、紙のカードで対応する",
-    ],
-    links: [
-      {
-        title: "NIA公式: Arrival Card の入力ページ",
-        note: "事前入力の本体。出発前にここで終えておくのが一番早いです。",
-        href: "https://s.nia.gov.cn/ArrivalCardFillingPC/",
-      },
-      {
-        title: "NIA公式: Arrival Card のオンライン提出方法",
-        note: "NIA 12367 app、WeChat / Alipay ミニプログラム、空港 QR で提出できることを確認できます。",
-        href: "https://en.nia.gov.cn/n147418/n147463/c195170/content.html",
-      },
-      {
-        title: "NIA公式: 偽サイト注意と無料案内",
-        note: "Arrival Card のオンライン提出は無料で、公式経路だけを使うように案内しています。",
-        href: "https://en.nia.gov.cn/n147418/n147463/c191530/content.html",
-      },
-    ],
-  },
-  {
     title: "Alipay / WeChat 内で片付く範囲を分ける",
     text: "全部を1つのアプリで完結させるのは無理ですが、Alipay / WeChat の中だけでも、支払い、地下鉄、配車、入国カードまではかなり片付きます。列車予約と eSIM は外に出した方が安定します。",
     icon: "logic",
@@ -380,6 +352,37 @@ const travelTools = [
         title: "NIA公式: 12367 ミニプログラムでできること",
         note: "NIA 12367 が WeChat / Alipay ミニプログラムで使えることと、24時間の問い合わせ導線を確認できます。",
         href: "https://en.nia.gov.cn/n147413/c160885/content.html",
+      },
+    ],
+  },
+];
+
+const routeTools = [
+  {
+    title: "高鉄は 12306 か Trip.com に寄せる",
+    text: "上海-杭州-蘇州は高鉄に慣れればかなり楽です。列車だけはミニプログラムに散らさず、12306 公式か Trip.com に寄せた方が迷いません。外国旅券なら 12306 英語版でパスポート登録できます。",
+    icon: "move",
+    steps: [
+      "外国旅券でも 12306 英語版はパスポートで登録できる",
+      "予約は Trip.com か 12306 のどちらかに絞る",
+      "駅では 手荷物検査 → 改札 → ホーム の順に進む",
+      "初回は 出発の45〜60分前 に着く前提で考える",
+    ],
+    links: [
+      {
+        title: "まず読む: 日本語で高鉄の乗り方",
+        note: "日本人向けに、予約から駅での流れまでを一通り追える記事。",
+        href: "https://media.xsight.co.jp/article/1402/",
+      },
+      {
+        title: "予約する: 12306公式",
+        note: "公式で直接予約したいときの入口。英語表示あり。",
+        href: "https://www.12306.cn/en/",
+      },
+      {
+        title: "12306 FAQ: パスポートで予約できるか",
+        note: "英語版は外国旅券を受け付けること、e-ticket は購入時の身分証で乗ることを確認できます。",
+        href: "https://www.12306.cn/en/faq.html",
       },
     ],
   },
@@ -782,10 +785,10 @@ function renderOverviewFocus() {
   );
 }
 
-function renderTravelTools() {
+function renderToolCards(targetId, items) {
   renderCollection(
-    "travel-tools",
-    travelTools,
+    targetId,
+    items,
     (item) => `
       <div class="reference-card-head">
         <span class="icon-chip" aria-hidden="true">${iconSvg(item.icon)}</span>
@@ -1239,9 +1242,10 @@ function renderDiagram() {
 
 renderSummary();
 renderOverviewFocus();
+renderToolCards("prep-tools", prepTools);
 renderDiagram();
 renderLegend();
-renderTravelTools();
+renderToolCards("route-tools", routeTools);
 renderHighlights();
 renderScenes();
 renderReferences();
