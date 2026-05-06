@@ -634,6 +634,8 @@ h1 {
   border-radius: 999px;
   background: rgba(23, 20, 17, 0.18);
   margin: 10px auto 0;
+  touch-action: none;
+  cursor: grab;
 }
 
 .route-sheet-head {
@@ -1228,7 +1230,9 @@ h1 {
   .route-sheet {
     left: 0;
     right: 0;
-    height: 95vh;
+    top: max(8dvh, calc(env(safe-area-inset-top) + 12px));
+    bottom: 0;
+    height: auto;
     border-radius: 26px 26px 0 0;
   }
 
@@ -1236,6 +1240,10 @@ h1 {
   .route-sheet-body {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .route-sheet-head {
+    padding-top: max(12px, env(safe-area-inset-top));
   }
 
   .weather-panel-head {

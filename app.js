@@ -1181,7 +1181,9 @@ function openRouteSheet(cityId) {
   const detail = routeCityDetails[cityId];
   if (!detail) return;
   const overlay = document.getElementById("route-sheet-overlay");
+  const sheet = document.getElementById("route-sheet");
   renderRouteSheetContent(detail);
+  sheet.style.transform = "";
   overlay.hidden = false;
   document.body.classList.add("route-sheet-open");
   window.requestAnimationFrame(() => {
@@ -1191,7 +1193,11 @@ function openRouteSheet(cityId) {
 
 function closeRouteSheet() {
   const overlay = document.getElementById("route-sheet-overlay");
+  const sheet = document.getElementById("route-sheet");
+  const backdrop = document.getElementById("route-sheet-backdrop");
   if (overlay.hidden) return;
+  sheet.style.transform = "";
+  backdrop.style.opacity = "";
   overlay.classList.remove("is-open");
   document.body.classList.remove("route-sheet-open");
   window.setTimeout(() => {
@@ -1622,6 +1628,45 @@ window.addEventListener("keydown", (event) => {
     closeRouteSheet();
   }
 });
+
+{
+  const handle = document.querySelector(".route-sheet-handle");
+  const sheet = document.getElementById("route-sheet");
+  const backdrop = document.getElementById("route-sheet-backdrop");
+  let startY = 0;
+  let currentY = 0;
+  let dragging = false;
+
+  handle?.addEventListener("pointerdown", (event) => {
+    if (document.getElementById("route-sheet-overlay")?.hidden) return;
+    dragging = true;
+    startY = event.clientY;
+    currentY = 0;
+    handle.setPointerCapture?.(event.pointerId);
+  });
+
+  handle?.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    currentY = Math.max(0, event.clientY - startY);
+    sheet.style.transform = `translateY(${currentY}px)`;
+    backdrop.style.opacity = `${Math.max(0, 1 - currentY / 260)}`;
+  });
+
+  function finishDrag(event) {
+    if (!dragging) return;
+    dragging = false;
+    handle?.releasePointerCapture?.(event.pointerId);
+    if (currentY > 120) {
+      closeRouteSheet();
+      return;
+    }
+    sheet.style.transform = "";
+    backdrop.style.opacity = "";
+  }
+
+  handle?.addEventListener("pointerup", finishDrag);
+  handle?.addEventListener("pointercancel", finishDrag);
+}
 
 window.setInterval(() => {
   loadLiveWeather();
