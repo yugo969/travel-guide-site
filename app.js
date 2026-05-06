@@ -40,41 +40,41 @@ const routeStops = [
   {
     id: "nanjing",
     label: "南京",
-    x: 135,
+    x: 118,
     y: 88,
     color: "#7b5c1d",
     stay: "1-2泊候補",
-    stayX: 135,
+    stayX: 118,
     stayY: 120,
   },
   {
     id: "suzhou",
     label: "蘇州",
-    x: 330,
+    x: 278,
     y: 112,
     color: "#456543",
     stay: "Day 7 / 日帰り",
-    stayX: 246,
+    stayX: 208,
     stayY: 126,
   },
   {
     id: "shanghai",
     label: "上海",
-    x: 545,
+    x: 455,
     y: 155,
     color: "#a93f25",
     stay: "Day 1-4, 8-10",
-    stayX: 616,
-    stayY: 155,
+    stayX: 455,
+    stayY: 187,
   },
   {
     id: "hangzhou",
     label: "杭州",
-    x: 330,
+    x: 278,
     y: 235,
     color: "#0f5963",
     stay: "Day 5-6",
-    stayX: 330,
+    stayX: 278,
     stayY: 267,
   },
 ];
@@ -87,11 +87,11 @@ const routeLegs = [
     time: "高鉄 45-70分",
     tone: "current",
     points: [
-      [511, 155],
-      [511, 235],
-      [365, 235],
+      [425, 155],
+      [425, 235],
+      [312, 235],
     ],
-    labelX: 448,
+    labelX: 388,
     labelY: 222,
   },
   {
@@ -101,10 +101,10 @@ const routeLegs = [
     time: "高鉄 約1時間50分",
     tone: "current",
     points: [
-      [330, 215],
-      [330, 132],
+      [278, 215],
+      [278, 132],
     ],
-    labelX: 392,
+    labelX: 340,
     labelY: 176,
   },
   {
@@ -114,11 +114,11 @@ const routeLegs = [
     time: "高鉄 20-40分",
     tone: "current",
     points: [
-      [365, 112],
-      [460, 112],
-      [511, 141],
+      [312, 112],
+      [382, 112],
+      [425, 141],
     ],
-    labelX: 462,
+    labelX: 382,
     labelY: 94,
   },
   {
@@ -128,12 +128,12 @@ const routeLegs = [
     time: "高鉄 約1-1.5時間",
     tone: "option",
     points: [
-      [295, 235],
-      [245, 235],
-      [245, 104],
-      [170, 104],
+      [243, 235],
+      [198, 235],
+      [198, 104],
+      [153, 104],
     ],
-    labelX: 245,
+    labelX: 198,
     labelY: 252,
   },
   {
@@ -143,11 +143,11 @@ const routeLegs = [
     time: "高鉄 約45-60分",
     tone: "option",
     points: [
-      [170, 88],
-      [245, 88],
-      [295, 102],
+      [153, 88],
+      [198, 88],
+      [243, 102],
     ],
-    labelX: 245,
+    labelX: 198,
     labelY: 72,
   },
 ];
@@ -1373,7 +1373,7 @@ function renderDiagram() {
   const container = document.getElementById("route-diagram");
   container.textContent = "";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 0 700 300");
+  svg.setAttribute("viewBox", "0 0 540 286");
 
   function appendTextWithBg({
     x,
@@ -1426,8 +1426,8 @@ function renderDiagram() {
   const backdrop = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   backdrop.setAttribute("x", "10");
   backdrop.setAttribute("y", "14");
-  backdrop.setAttribute("width", "680");
-  backdrop.setAttribute("height", "272");
+  backdrop.setAttribute("width", "520");
+  backdrop.setAttribute("height", "252");
   backdrop.setAttribute("rx", "24");
   backdrop.setAttribute("fill", "#f8f2e9");
   backdrop.setAttribute("stroke", "rgba(23,20,17,0.08)");
@@ -1436,14 +1436,14 @@ function renderDiagram() {
   const badge = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   badge.setAttribute("x", "26");
   badge.setAttribute("y", "34");
-  badge.setAttribute("width", "102");
+  badge.setAttribute("width", "92");
   badge.setAttribute("height", "24");
   badge.setAttribute("rx", "12");
   badge.setAttribute("fill", "rgba(15,89,99,0.08)");
   svg.appendChild(badge);
 
   const badgeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  badgeText.setAttribute("x", "77");
+  badgeText.setAttribute("x", "72");
   badgeText.setAttribute("y", "50");
   badgeText.setAttribute("text-anchor", "middle");
   badgeText.setAttribute("font-size", "11");
@@ -1454,9 +1454,9 @@ function renderDiagram() {
 
   const legendSolid = document.createElementNS("http://www.w3.org/2000/svg", "line");
   legendSolid.setAttribute("x1", "24");
-  legendSolid.setAttribute("y1", "250");
+  legendSolid.setAttribute("y1", "238");
   legendSolid.setAttribute("x2", "50");
-  legendSolid.setAttribute("y2", "250");
+  legendSolid.setAttribute("y2", "238");
   legendSolid.setAttribute("stroke", "#2f2924");
   legendSolid.setAttribute("stroke-width", "2");
   legendSolid.setAttribute("stroke-linecap", "round");
@@ -1464,7 +1464,7 @@ function renderDiagram() {
 
   appendTextWithBg({
     x: 84,
-    y: 254,
+    y: 242,
     text: "今の案",
     fontSize: 9,
     fontWeight: "600",
@@ -1476,9 +1476,9 @@ function renderDiagram() {
 
   const legendDashed = document.createElementNS("http://www.w3.org/2000/svg", "line");
   legendDashed.setAttribute("x1", "24");
-  legendDashed.setAttribute("y1", "270");
+  legendDashed.setAttribute("y1", "256");
   legendDashed.setAttribute("x2", "50");
-  legendDashed.setAttribute("y2", "270");
+  legendDashed.setAttribute("y2", "256");
   legendDashed.setAttribute("stroke", "#8a6a28");
   legendDashed.setAttribute("stroke-width", "1.6");
   legendDashed.setAttribute("stroke-linecap", "round");
@@ -1487,7 +1487,7 @@ function renderDiagram() {
 
   appendTextWithBg({
     x: 104,
-    y: 274,
+    y: 260,
     text: "南京追加案",
     fontSize: 9,
     fontWeight: "600",
