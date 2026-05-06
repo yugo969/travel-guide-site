@@ -84,7 +84,7 @@ const routeLegs = [
     from: "shanghai",
     to: "hangzhou",
     order: "1",
-    time: "45-70分",
+    time: "高鉄 45-70分",
     tone: "current",
     points: [
       [612, 162],
@@ -98,7 +98,7 @@ const routeLegs = [
     from: "hangzhou",
     to: "suzhou",
     order: "2",
-    time: "約1時間49分",
+    time: "高鉄 約1時間50分",
     tone: "current",
     points: [
       [430, 228],
@@ -111,7 +111,7 @@ const routeLegs = [
     from: "suzhou",
     to: "shanghai",
     order: "3",
-    time: "20-40分",
+    time: "高鉄 20-40分",
     tone: "current",
     points: [
       [472, 112],
@@ -125,7 +125,7 @@ const routeLegs = [
     from: "hangzhou",
     to: "nanjing",
     order: "2A",
-    time: "1-2.5時間",
+    time: "高鉄 約1-1.5時間",
     tone: "option",
     points: [
       [388, 248],
@@ -140,7 +140,7 @@ const routeLegs = [
     from: "nanjing",
     to: "suzhou",
     order: "2B",
-    time: "44分-3時間",
+    time: "高鉄 約45-60分",
     tone: "option",
     points: [
       [228, 90],
