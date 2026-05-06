@@ -40,42 +40,42 @@ const routeStops = [
   {
     id: "nanjing",
     label: "南京",
-    x: 190,
-    y: 90,
+    x: 135,
+    y: 88,
     color: "#7b5c1d",
     stay: "1-2泊候補",
-    stayX: 190,
-    stayY: 124,
+    stayX: 135,
+    stayY: 120,
   },
   {
     id: "suzhou",
     label: "蘇州",
-    x: 430,
+    x: 330,
     y: 112,
     color: "#456543",
     stay: "Day 7 / 日帰り",
-    stayX: 332,
+    stayX: 246,
     stayY: 126,
   },
   {
     id: "shanghai",
     label: "上海",
-    x: 650,
-    y: 162,
+    x: 545,
+    y: 155,
     color: "#a93f25",
     stay: "Day 1-4, 8-10",
-    stayX: 734,
-    stayY: 162,
+    stayX: 616,
+    stayY: 155,
   },
   {
     id: "hangzhou",
     label: "杭州",
-    x: 430,
-    y: 248,
+    x: 330,
+    y: 235,
     color: "#0f5963",
     stay: "Day 5-6",
-    stayX: 430,
-    stayY: 284,
+    stayX: 330,
+    stayY: 267,
   },
 ];
 
@@ -87,12 +87,12 @@ const routeLegs = [
     time: "高鉄 45-70分",
     tone: "current",
     points: [
-      [612, 162],
-      [612, 248],
-      [472, 248],
+      [511, 155],
+      [511, 235],
+      [365, 235],
     ],
-    labelX: 540,
-    labelY: 236,
+    labelX: 448,
+    labelY: 222,
   },
   {
     from: "hangzhou",
@@ -101,11 +101,11 @@ const routeLegs = [
     time: "高鉄 約1時間50分",
     tone: "current",
     points: [
-      [430, 228],
-      [430, 132],
+      [330, 215],
+      [330, 132],
     ],
-    labelX: 500,
-    labelY: 180,
+    labelX: 392,
+    labelY: 176,
   },
   {
     from: "suzhou",
@@ -114,11 +114,11 @@ const routeLegs = [
     time: "高鉄 20-40分",
     tone: "current",
     points: [
-      [472, 112],
-      [560, 112],
-      [612, 148],
+      [365, 112],
+      [460, 112],
+      [511, 141],
     ],
-    labelX: 560,
+    labelX: 462,
     labelY: 94,
   },
   {
@@ -128,13 +128,13 @@ const routeLegs = [
     time: "高鉄 約1-1.5時間",
     tone: "option",
     points: [
-      [388, 248],
-      [300, 248],
-      [300, 106],
-      [190, 106],
+      [295, 235],
+      [245, 235],
+      [245, 104],
+      [170, 104],
     ],
-    labelX: 300,
-    labelY: 264,
+    labelX: 245,
+    labelY: 252,
   },
   {
     from: "nanjing",
@@ -143,11 +143,11 @@ const routeLegs = [
     time: "高鉄 約45-60分",
     tone: "option",
     points: [
-      [228, 90],
-      [300, 90],
-      [388, 112],
+      [170, 88],
+      [245, 88],
+      [295, 102],
     ],
-    labelX: 300,
+    labelX: 245,
     labelY: 72,
   },
 ];
@@ -1191,6 +1191,7 @@ function openRouteSheet(cityId) {
 
 function closeRouteSheet() {
   const overlay = document.getElementById("route-sheet-overlay");
+  if (overlay.hidden) return;
   overlay.classList.remove("is-open");
   document.body.classList.remove("route-sheet-open");
   window.setTimeout(() => {
@@ -1366,7 +1367,7 @@ function renderDiagram() {
   const container = document.getElementById("route-diagram");
   container.textContent = "";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 0 820 320");
+  svg.setAttribute("viewBox", "0 0 700 300");
 
   function appendTextWithBg({
     x,
@@ -1376,10 +1377,10 @@ function renderDiagram() {
     fontWeight = "700",
     fill = "#625a52",
     bgFill = "rgba(255,255,255,0.92)",
-    paddingX = 8,
-    paddingY = 6,
+    paddingX = 6,
+    paddingY = 4,
   }) {
-    const width = Math.max(44, text.length * fontSize * 0.98 + paddingX * 2);
+    const width = Math.max(36, text.length * fontSize * 0.84 + paddingX * 2);
     const height = fontSize + paddingY * 2;
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", x - width / 2);
@@ -1419,24 +1420,24 @@ function renderDiagram() {
   const backdrop = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   backdrop.setAttribute("x", "10");
   backdrop.setAttribute("y", "14");
-  backdrop.setAttribute("width", "800");
-  backdrop.setAttribute("height", "290");
+  backdrop.setAttribute("width", "680");
+  backdrop.setAttribute("height", "272");
   backdrop.setAttribute("rx", "24");
   backdrop.setAttribute("fill", "#f8f2e9");
   backdrop.setAttribute("stroke", "rgba(23,20,17,0.08)");
   svg.appendChild(backdrop);
 
   const badge = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  badge.setAttribute("x", "34");
+  badge.setAttribute("x", "26");
   badge.setAttribute("y", "34");
-  badge.setAttribute("width", "116");
+  badge.setAttribute("width", "102");
   badge.setAttribute("height", "24");
   badge.setAttribute("rx", "12");
   badge.setAttribute("fill", "rgba(15,89,99,0.08)");
   svg.appendChild(badge);
 
   const badgeText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  badgeText.setAttribute("x", "92");
+  badgeText.setAttribute("x", "77");
   badgeText.setAttribute("y", "50");
   badgeText.setAttribute("text-anchor", "middle");
   badgeText.setAttribute("font-size", "11");
@@ -1446,17 +1447,17 @@ function renderDiagram() {
   svg.appendChild(badgeText);
 
   const legendSolid = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  legendSolid.setAttribute("x1", "42");
+  legendSolid.setAttribute("x1", "24");
   legendSolid.setAttribute("y1", "278");
-  legendSolid.setAttribute("x2", "72");
+  legendSolid.setAttribute("x2", "50");
   legendSolid.setAttribute("y2", "278");
   legendSolid.setAttribute("stroke", "#2f2924");
-  legendSolid.setAttribute("stroke-width", "2.2");
+  legendSolid.setAttribute("stroke-width", "2");
   legendSolid.setAttribute("stroke-linecap", "round");
   svg.appendChild(legendSolid);
 
   appendTextWithBg({
-    x: 118,
+    x: 92,
     y: 282,
     text: "実線 今の案",
     fontSize: 9,
@@ -1468,18 +1469,18 @@ function renderDiagram() {
   });
 
   const legendDashed = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  legendDashed.setAttribute("x1", "42");
+  legendDashed.setAttribute("x1", "24");
   legendDashed.setAttribute("y1", "300");
-  legendDashed.setAttribute("x2", "72");
+  legendDashed.setAttribute("x2", "50");
   legendDashed.setAttribute("y2", "300");
   legendDashed.setAttribute("stroke", "#8a6a28");
-  legendDashed.setAttribute("stroke-width", "1.8");
+  legendDashed.setAttribute("stroke-width", "1.6");
   legendDashed.setAttribute("stroke-linecap", "round");
   legendDashed.setAttribute("stroke-dasharray", "5 5");
   svg.appendChild(legendDashed);
 
   appendTextWithBg({
-    x: 130,
+    x: 102,
     y: 304,
     text: "点線 南京追加案",
     fontSize: 9,
@@ -1495,7 +1496,7 @@ function renderDiagram() {
     polyline.setAttribute("points", leg.points.map((point) => point.join(",")).join(" "));
     polyline.setAttribute("fill", "none");
     polyline.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
-    polyline.setAttribute("stroke-width", leg.tone === "current" ? "2.2" : "1.8");
+    polyline.setAttribute("stroke-width", leg.tone === "current" ? "2" : "1.6");
     polyline.setAttribute("stroke-linecap", "round");
     polyline.setAttribute("stroke-linejoin", "round");
     if (leg.tone === "option") {
@@ -1505,19 +1506,19 @@ function renderDiagram() {
     svg.appendChild(polyline);
 
     const orderBadge = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    orderBadge.setAttribute("cx", leg.labelX - 44);
+    orderBadge.setAttribute("cx", leg.labelX - 34);
     orderBadge.setAttribute("cy", leg.labelY - 2);
-    orderBadge.setAttribute("r", "11");
+    orderBadge.setAttribute("r", "9");
     orderBadge.setAttribute("fill", "#ffffff");
     orderBadge.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
-    orderBadge.setAttribute("stroke-width", "1.4");
+    orderBadge.setAttribute("stroke-width", "1.2");
     svg.appendChild(orderBadge);
 
     const orderText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    orderText.setAttribute("x", leg.labelX - 44);
-    orderText.setAttribute("y", leg.labelY + 2);
+    orderText.setAttribute("x", leg.labelX - 34);
+    orderText.setAttribute("y", leg.labelY + 1.5);
     orderText.setAttribute("text-anchor", "middle");
-    orderText.setAttribute("font-size", leg.order.length > 1 ? "8.5" : "10");
+    orderText.setAttribute("font-size", leg.order.length > 1 ? "7.5" : "9");
     orderText.setAttribute("font-weight", "700");
     orderText.textContent = String(leg.order);
     svg.appendChild(orderText);
@@ -1526,10 +1527,10 @@ function renderDiagram() {
       x: leg.labelX,
       y: leg.labelY,
       text: leg.time,
-      fontSize: 10,
+      fontSize: 8.5,
       fill: leg.tone === "current" ? "#2f2924" : "#7b5c1d",
-      paddingX: 6,
-      paddingY: 4,
+      paddingX: 4,
+      paddingY: 3,
     });
   });
 
@@ -1550,19 +1551,19 @@ function renderDiagram() {
     }
 
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    rect.setAttribute("x", stop.x - 34);
-    rect.setAttribute("y", stop.y - 16);
-    rect.setAttribute("width", "68");
-    rect.setAttribute("height", "32");
-    rect.setAttribute("rx", "12");
+    rect.setAttribute("x", stop.x - 30);
+    rect.setAttribute("y", stop.y - 14);
+    rect.setAttribute("width", "60");
+    rect.setAttribute("height", "28");
+    rect.setAttribute("rx", "10");
     rect.setAttribute("fill", stop.color);
     group.appendChild(rect);
 
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("x", stop.x);
-    label.setAttribute("y", stop.y + 5);
+    label.setAttribute("y", stop.y + 4.5);
     label.setAttribute("text-anchor", "middle");
-    label.setAttribute("font-size", "14");
+    label.setAttribute("font-size", "12.5");
     label.setAttribute("font-weight", "700");
     label.setAttribute("fill", "#ffffff");
     label.textContent = stop.label;
@@ -1572,12 +1573,12 @@ function renderDiagram() {
       x: stop.stayX,
       y: stop.stayY,
       text: stop.stay,
-      fontSize: 9,
+      fontSize: 8.5,
       fontWeight: "600",
       fill: stop.color,
       bgFill: "rgba(248,242,233,0.96)",
-      paddingX: 6,
-      paddingY: 4,
+      paddingX: 4,
+      paddingY: 3,
     });
 
     svg.appendChild(group);
@@ -1610,6 +1611,11 @@ document.getElementById("weather-refresh")?.addEventListener("click", () => {
 
 document.getElementById("route-sheet-close")?.addEventListener("click", closeRouteSheet);
 document.getElementById("route-sheet-backdrop")?.addEventListener("click", closeRouteSheet);
+document.getElementById("route-sheet-overlay")?.addEventListener("click", (event) => {
+  if (event.target?.id === "route-sheet-overlay") {
+    closeRouteSheet();
+  }
+});
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {

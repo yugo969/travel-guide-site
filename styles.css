@@ -558,7 +558,7 @@ h1 {
 .diagram-shell svg {
   display: block;
   width: 100%;
-  min-width: 820px;
+  min-width: 700px;
   height: auto;
 }
 
@@ -591,6 +591,7 @@ h1 {
 .route-sheet-backdrop {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: rgba(18, 16, 14, 0.42);
   backdrop-filter: blur(12px);
   opacity: 0;
@@ -605,6 +606,7 @@ h1 {
   margin: 0 auto;
   max-width: 980px;
   height: min(95vh, 860px);
+  z-index: 1;
   border-radius: 28px 28px 0 0;
   background:
     linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(248, 242, 233, 0.98)),
