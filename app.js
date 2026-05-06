@@ -170,6 +170,55 @@ const routeOptions = [
   },
 ];
 
+const routeCityDetails = {
+  nanjing: {
+    kicker: "南京メモ",
+    title: "南京は、上海圏の中では費用を少し落としやすい",
+    intro:
+      "宿泊費とローカル飯は、上海・杭州・蘇州より軽い寄りです。しかも上海から高鉄で約1時間なので、東部の発展圏にいながら『少し本土感が強い都市』を見やすい位置にあります。",
+    image: {
+      src: "./images/nanjing-skyline.jpg",
+      alt: "南京のスカイラインと城壁の景色",
+      credit: "Wikimedia Commons",
+      href: "https://commons.wikimedia.org/wiki/File:Nanjing_Skyline.jpg",
+    },
+    metrics: [
+      { label: "安い店1食", value: "20元", note: "約460円" },
+      { label: "平均ホテル", value: "US$93", note: "約14,600円" },
+      { label: "上海より", value: "食費軽め", note: "30元 → 20元" },
+      { label: "移動", value: "高鉄約1時間", note: "上海から近い" },
+    ],
+    bullets: [
+      "上海よりローカル食が少し安く、宿泊の平均も下がる。",
+      "杭州や蘇州より『中国本土の大都市感』を取りやすい。",
+      "住む視点で見るなら、観光地より地下鉄、駅前、住宅地寄りの空気が見やすい。",
+    ],
+    compare: [
+      "南京: 安い店1食 20元、平均ホテル US$93",
+      "杭州: 安い店1食 25元、平均ホテル US$114",
+      "蘇州: 安い店1食 28.5元、平均ホテル US$114",
+      "上海: 安い店1食 30元、平均ホテル US$133",
+    ],
+    links: [
+      {
+        title: "Numbeo: Nanjing の外食価格",
+        note: "安い店 20元、2人で普通の店 168元 の目安を確認できます。",
+        href: "https://www.numbeo.com/cost-of-living/in/Nanjing/",
+      },
+      {
+        title: "Trip.com: Nanjing のホテル相場",
+        note: "平均宿泊費の目安。4月時点の平均は約 US$93 でした。",
+        href: "https://www.trip.com/hotels/nanjing-hotels-list-12/",
+      },
+      {
+        title: "TravelChinaGuide: 上海-南京 高鉄",
+        note: "所要時間と2等席の価格帯を確認できます。",
+        href: "https://www.travelchinaguide.com/china-trains/high-speed/shanghai-nanjing.htm",
+      },
+    ],
+  },
+};
+
 const schedule = [
   {
     day: "Day 1",
@@ -1064,6 +1113,91 @@ function renderLegend() {
   );
 }
 
+function renderRouteSheetContent(detail) {
+  const body = document.getElementById("route-sheet-body");
+  document.getElementById("route-sheet-kicker").textContent = detail.kicker;
+  document.getElementById("route-sheet-title").textContent = detail.title;
+  body.innerHTML = `
+    <div class="route-sheet-hero">
+      <figure class="route-sheet-visual">
+        <img src="${detail.image.src}" alt="${detail.image.alt}" loading="lazy" />
+      </figure>
+      <div class="route-sheet-copy">
+        <p>${detail.intro}</p>
+        <div class="route-sheet-links">
+          <a href="${detail.image.href}" target="_blank" rel="noreferrer noopener">
+            <strong>画像の出典</strong>
+            <span>${detail.image.credit}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="route-sheet-metrics">
+      ${detail.metrics
+        .map(
+          (item) => `
+            <article class="route-sheet-metric">
+              <span>${item.label}</span>
+              <strong>${item.value}</strong>
+              <span>${item.note}</span>
+            </article>
+          `
+        )
+        .join("")}
+    </div>
+    <div class="route-sheet-grid">
+      <section class="route-sheet-card">
+        <h4>この都市を入れる意味</h4>
+        <ul class="route-sheet-list">
+          ${detail.bullets.map((item) => `<li>${item}</li>`).join("")}
+        </ul>
+      </section>
+      <section class="route-sheet-card">
+        <h4>ざっくり比較</h4>
+        <ul class="route-sheet-list">
+          ${detail.compare.map((item) => `<li>${item}</li>`).join("")}
+        </ul>
+      </section>
+    </div>
+    <section class="route-sheet-card">
+      <h4>参照リンク</h4>
+      <div class="route-sheet-links">
+        ${detail.links
+          .map(
+            (link) => `
+              <a href="${link.href}" target="_blank" rel="noreferrer noopener">
+                <strong>${link.title}</strong>
+                <span>${link.note}</span>
+              </a>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function openRouteSheet(cityId) {
+  const detail = routeCityDetails[cityId];
+  if (!detail) return;
+  const overlay = document.getElementById("route-sheet-overlay");
+  renderRouteSheetContent(detail);
+  overlay.hidden = false;
+  document.body.classList.add("route-sheet-open");
+  window.requestAnimationFrame(() => {
+    overlay.classList.add("is-open");
+  });
+}
+
+function closeRouteSheet() {
+  const overlay = document.getElementById("route-sheet-overlay");
+  overlay.classList.remove("is-open");
+  document.body.classList.remove("route-sheet-open");
+  window.setTimeout(() => {
+    overlay.hidden = true;
+  }, 260);
+}
+
 function renderSchedule() {
   renderCollection(
     "schedule-grid",
@@ -1400,6 +1534,21 @@ function renderDiagram() {
   });
 
   routeStops.forEach((stop) => {
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    if (routeCityDetails[stop.id]) {
+      group.setAttribute("class", "route-node-button");
+      group.setAttribute("role", "button");
+      group.setAttribute("tabindex", "0");
+      group.setAttribute("aria-label", `${stop.label}の詳細を開く`);
+      group.addEventListener("click", () => openRouteSheet(stop.id));
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openRouteSheet(stop.id);
+        }
+      });
+    }
+
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", stop.x - 34);
     rect.setAttribute("y", stop.y - 16);
@@ -1407,7 +1556,7 @@ function renderDiagram() {
     rect.setAttribute("height", "32");
     rect.setAttribute("rx", "12");
     rect.setAttribute("fill", stop.color);
-    svg.appendChild(rect);
+    group.appendChild(rect);
 
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("x", stop.x);
@@ -1417,7 +1566,7 @@ function renderDiagram() {
     label.setAttribute("font-weight", "700");
     label.setAttribute("fill", "#ffffff");
     label.textContent = stop.label;
-    svg.appendChild(label);
+    group.appendChild(label);
 
     appendTextWithBg({
       x: stop.stayX,
@@ -1430,6 +1579,8 @@ function renderDiagram() {
       paddingX: 6,
       paddingY: 4,
     });
+
+    svg.appendChild(group);
   });
 
   container.appendChild(svg);
@@ -1455,6 +1606,15 @@ loadLiveWeather();
 
 document.getElementById("weather-refresh")?.addEventListener("click", () => {
   loadLiveWeather();
+});
+
+document.getElementById("route-sheet-close")?.addEventListener("click", closeRouteSheet);
+document.getElementById("route-sheet-backdrop")?.addEventListener("click", closeRouteSheet);
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeRouteSheet();
+  }
 });
 
 window.setInterval(() => {

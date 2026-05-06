@@ -236,6 +236,27 @@
       </section>
     </main>
 
+    <div id="route-sheet-overlay" class="route-sheet-overlay" hidden>
+      <div id="route-sheet-backdrop" class="route-sheet-backdrop"></div>
+      <section
+        id="route-sheet"
+        class="route-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="route-sheet-title"
+      >
+        <div class="route-sheet-handle" aria-hidden="true"></div>
+        <div class="route-sheet-head">
+          <div>
+            <span id="route-sheet-kicker" class="mini-label">都市メモ</span>
+            <h3 id="route-sheet-title">詳細</h3>
+          </div>
+          <button id="route-sheet-close" class="route-sheet-close" type="button" aria-label="閉じる">×</button>
+        </div>
+        <div id="route-sheet-body" class="route-sheet-body"></div>
+      </section>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
