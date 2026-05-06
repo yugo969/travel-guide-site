@@ -1454,18 +1454,18 @@ function renderDiagram() {
 
   const legendSolid = document.createElementNS("http://www.w3.org/2000/svg", "line");
   legendSolid.setAttribute("x1", "24");
-  legendSolid.setAttribute("y1", "278");
+  legendSolid.setAttribute("y1", "250");
   legendSolid.setAttribute("x2", "50");
-  legendSolid.setAttribute("y2", "278");
+  legendSolid.setAttribute("y2", "250");
   legendSolid.setAttribute("stroke", "#2f2924");
   legendSolid.setAttribute("stroke-width", "2");
   legendSolid.setAttribute("stroke-linecap", "round");
   svg.appendChild(legendSolid);
 
   appendTextWithBg({
-    x: 92,
-    y: 282,
-    text: "実線 今の案",
+    x: 84,
+    y: 254,
+    text: "今の案",
     fontSize: 9,
     fontWeight: "600",
     fill: "#2f2924",
@@ -1476,9 +1476,9 @@ function renderDiagram() {
 
   const legendDashed = document.createElementNS("http://www.w3.org/2000/svg", "line");
   legendDashed.setAttribute("x1", "24");
-  legendDashed.setAttribute("y1", "300");
+  legendDashed.setAttribute("y1", "270");
   legendDashed.setAttribute("x2", "50");
-  legendDashed.setAttribute("y2", "300");
+  legendDashed.setAttribute("y2", "270");
   legendDashed.setAttribute("stroke", "#8a6a28");
   legendDashed.setAttribute("stroke-width", "1.6");
   legendDashed.setAttribute("stroke-linecap", "round");
@@ -1486,9 +1486,9 @@ function renderDiagram() {
   svg.appendChild(legendDashed);
 
   appendTextWithBg({
-    x: 102,
-    y: 304,
-    text: "点線 南京追加案",
+    x: 104,
+    y: 274,
+    text: "南京追加案",
     fontSize: 9,
     fontWeight: "600",
     fill: "#7b5c1d",
@@ -1512,8 +1512,8 @@ function renderDiagram() {
     svg.appendChild(polyline);
 
     const orderBadge = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    orderBadge.setAttribute("cx", leg.labelX - 34);
-    orderBadge.setAttribute("cy", leg.labelY - 2);
+    orderBadge.setAttribute("cx", leg.labelX);
+    orderBadge.setAttribute("cy", leg.labelY - 14);
     orderBadge.setAttribute("r", "9");
     orderBadge.setAttribute("fill", "#ffffff");
     orderBadge.setAttribute("stroke", leg.tone === "current" ? "#2f2924" : "#8a6a28");
@@ -1521,8 +1521,8 @@ function renderDiagram() {
     svg.appendChild(orderBadge);
 
     const orderText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    orderText.setAttribute("x", leg.labelX - 34);
-    orderText.setAttribute("y", leg.labelY + 1.5);
+    orderText.setAttribute("x", leg.labelX);
+    orderText.setAttribute("y", leg.labelY - 10.5);
     orderText.setAttribute("text-anchor", "middle");
     orderText.setAttribute("font-size", leg.order.length > 1 ? "7.5" : "9");
     orderText.setAttribute("font-weight", "700");
@@ -1531,12 +1531,12 @@ function renderDiagram() {
 
     appendTextWithBg({
       x: leg.labelX,
-      y: leg.labelY,
+      y: leg.labelY + 7,
       text: leg.time,
       fontSize: 8.5,
       fill: leg.tone === "current" ? "#2f2924" : "#7b5c1d",
-      paddingX: 4,
-      paddingY: 3,
+      paddingX: 3,
+      paddingY: 2,
     });
   });
 
