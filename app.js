@@ -43,6 +43,9 @@ const routeStops = [
     x: 190,
     y: 90,
     color: "#7b5c1d",
+    stay: "1-2泊候補",
+    stayX: 190,
+    stayY: 124,
   },
   {
     id: "suzhou",
@@ -50,6 +53,9 @@ const routeStops = [
     x: 430,
     y: 112,
     color: "#456543",
+    stay: "Day 7 / 日帰り",
+    stayX: 332,
+    stayY: 126,
   },
   {
     id: "shanghai",
@@ -57,6 +63,9 @@ const routeStops = [
     x: 650,
     y: 162,
     color: "#a93f25",
+    stay: "Day 1-4, 8-10",
+    stayX: 734,
+    stayY: 162,
   },
   {
     id: "hangzhou",
@@ -64,6 +73,9 @@ const routeStops = [
     x: 430,
     y: 248,
     color: "#0f5963",
+    stay: "Day 5-6",
+    stayX: 430,
+    stayY: 284,
   },
 ];
 
@@ -1299,6 +1311,51 @@ function renderDiagram() {
   badgeText.textContent = "概略ルート";
   svg.appendChild(badgeText);
 
+  const legendSolid = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  legendSolid.setAttribute("x1", "42");
+  legendSolid.setAttribute("y1", "278");
+  legendSolid.setAttribute("x2", "72");
+  legendSolid.setAttribute("y2", "278");
+  legendSolid.setAttribute("stroke", "#2f2924");
+  legendSolid.setAttribute("stroke-width", "2.2");
+  legendSolid.setAttribute("stroke-linecap", "round");
+  svg.appendChild(legendSolid);
+
+  appendTextWithBg({
+    x: 118,
+    y: 282,
+    text: "実線 今の案",
+    fontSize: 9,
+    fontWeight: "600",
+    fill: "#2f2924",
+    bgFill: "rgba(248,242,233,0.96)",
+    paddingX: 6,
+    paddingY: 4,
+  });
+
+  const legendDashed = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  legendDashed.setAttribute("x1", "42");
+  legendDashed.setAttribute("y1", "300");
+  legendDashed.setAttribute("x2", "72");
+  legendDashed.setAttribute("y2", "300");
+  legendDashed.setAttribute("stroke", "#8a6a28");
+  legendDashed.setAttribute("stroke-width", "1.8");
+  legendDashed.setAttribute("stroke-linecap", "round");
+  legendDashed.setAttribute("stroke-dasharray", "5 5");
+  svg.appendChild(legendDashed);
+
+  appendTextWithBg({
+    x: 130,
+    y: 304,
+    text: "点線 南京追加案",
+    fontSize: 9,
+    fontWeight: "600",
+    fill: "#7b5c1d",
+    bgFill: "rgba(248,242,233,0.96)",
+    paddingX: 6,
+    paddingY: 4,
+  });
+
   routeLegs.forEach((leg) => {
     const polyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
     polyline.setAttribute("points", leg.points.map((point) => point.join(",")).join(" "));
@@ -1361,6 +1418,18 @@ function renderDiagram() {
     label.setAttribute("fill", "#ffffff");
     label.textContent = stop.label;
     svg.appendChild(label);
+
+    appendTextWithBg({
+      x: stop.stayX,
+      y: stop.stayY,
+      text: stop.stay,
+      fontSize: 9,
+      fontWeight: "600",
+      fill: stop.color,
+      bgFill: "rgba(248,242,233,0.96)",
+      paddingX: 6,
+      paddingY: 4,
+    });
   });
 
   container.appendChild(svg);
